@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import artificialStarLogo from "@/assets/artificial-star-logo-bright.png";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -32,15 +33,12 @@ const Navigation = () => {
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center">
             <img 
-              src="/lovable-uploads/67b95d87-503c-4cf7-a292-4ed2f14bf7e6.png" 
+              src={artificialStarLogo} 
               alt="Artificial Star"
-              className="h-8 w-auto transition-all duration-300 hover:scale-110 hover:drop-shadow-glow"
+              className="h-12 w-auto transition-all duration-300 hover:scale-110 hover:drop-shadow-glow"
             />
-            <span className="text-xl font-bold text-foreground hover:text-primary transition-colors duration-300">
-              Artificial Star
-            </span>
           </div>
 
           {/* Desktop Navigation */}
