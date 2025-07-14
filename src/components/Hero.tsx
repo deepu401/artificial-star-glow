@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
-import StarLogo from "@/components/StarLogo";
+import { motion } from "framer-motion";
 
 const Hero = () => {
   return (
@@ -13,58 +13,104 @@ const Hero = () => {
       </div>
 
       <div className="container mx-auto px-6 py-20 relative z-10">
-        <div className="max-w-4xl mx-auto text-center">
-          {/* Animated logo */}
-          <div className="mb-8 animate-scale-in">
-            <StarLogo
-              size={60}
-              animated={true}
-              glowIntensity={0.9}
-              rotationSpeed={1.5}
-            />
-          </div>
-          
+        <div className="max-w-4xl mx-auto text-center pt-32">
           {/* Main headline */}
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 animate-fade-in-up" style={{animationDelay: '0.2s'}}>
-            <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              We don't just build AI.
-            </span>
-            <br />
-            <span className="text-foreground">
-              We build intelligent futures.
-            </span>
-          </h1>
+          <motion.h1 
+            className="text-6xl md:text-8xl font-bold mb-8 tracking-tight"
+            style={{fontFamily: "'Orbitron', 'Exo 2', sans-serif"}}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
+            <motion.span 
+              className="bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent block mb-4"
+              animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+              style={{ backgroundSize: "200% 200%" }}
+            >
+              ILLUMINATING THE FUTURE
+            </motion.span>
+            <motion.span 
+              className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent"
+              animate={{ backgroundPosition: ["100% 50%", "0% 50%", "100% 50%"] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "linear", delay: 2 }}
+              style={{ backgroundSize: "200% 200%" }}
+            >
+              WITH INTELLIGENCE
+            </motion.span>
+          </motion.h1>
           
           {/* Subheadline */}
-          <p className="text-xl md:text-2xl text-foreground-muted mb-8 max-w-3xl mx-auto leading-relaxed animate-fade-in-up" style={{animationDelay: '0.4s'}}>
-            Transform your business with custom AI solutions that actually work. 
-            From intelligent chatbots to voice agents that understand your customers.
-          </p>
+          <motion.p 
+            className="text-xl md:text-2xl text-foreground-muted mb-12 max-w-4xl mx-auto leading-relaxed"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+          >
+            Transform your business with AI solutions that don't just automate - they illuminate new possibilities.
+          </motion.p>
           
           {/* CTA Button */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-up" style={{animationDelay: '0.6s'}}>
-            <Button variant="hero" size="xl" className="group">
-              Start Your AI Journey
-              <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
-            </Button>
+          <motion.div 
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+          >
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Button variant="hero" size="xl" className="group">
+                Start Your AI Journey
+                <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+              </Button>
+            </motion.div>
             
-            <Button variant="glass" size="xl" className="group">
-              <Sparkles className="mr-2 group-hover:rotate-12 transition-transform duration-300" />
-              View Our Work
-            </Button>
-          </div>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Button variant="glass" size="xl" className="group">
+                <Sparkles className="mr-2 group-hover:rotate-12 transition-transform duration-300" />
+                Illuminate Your Business
+              </Button>
+            </motion.div>
+          </motion.div>
           
           {/* Trust indicators */}
-          <div className="mt-16 animate-fade-in" style={{animationDelay: '0.8s'}}>
-            <p className="text-sm text-foreground-subtle mb-6 uppercase tracking-wider">
-              Trusted by innovative companies worldwide
-            </p>
+          <motion.div 
+            className="mt-20"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.9 }}
+          >
+            <motion.p 
+              className="text-sm text-foreground-subtle mb-8 uppercase tracking-wider"
+              animate={{ opacity: [0.6, 1, 0.6] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            >
+              Illuminating businesses with intelligent solutions
+            </motion.p>
             <div className="flex justify-center items-center space-x-8 opacity-60">
-              <div className="w-24 h-8 bg-foreground-subtle/20 rounded animate-glow-pulse" style={{animationDelay: '1s'}}></div>
-              <div className="w-24 h-8 bg-foreground-subtle/20 rounded animate-glow-pulse" style={{animationDelay: '1.2s'}}></div>
-              <div className="w-24 h-8 bg-foreground-subtle/20 rounded animate-glow-pulse" style={{animationDelay: '1.4s'}}></div>
+              {[...Array(3)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  className="w-24 h-8 bg-gradient-to-r from-blue-400/20 to-purple-400/20 rounded"
+                  animate={{ 
+                    opacity: [0.3, 0.8, 0.3],
+                    scale: [0.95, 1.05, 0.95]
+                  }}
+                  transition={{ 
+                    duration: 2.5, 
+                    repeat: Infinity, 
+                    ease: "easeInOut",
+                    delay: i * 0.3
+                  }}
+                />
+              ))}
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
       

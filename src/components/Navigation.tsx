@@ -34,13 +34,13 @@ const Navigation = () => {
           {/* Logo */}
           <div className="flex items-center space-x-1">
             <div className="logo-text flex items-center">
-              <span className="text-2xl font-black text-foreground transition-all duration-300">
+              <span className="text-2xl font-black text-foreground transition-all duration-300" style={{fontFamily: "'Orbitron', 'Exo 2', sans-serif"}}>
                 Artificial
               </span>
               <span className="star-symbol mx-2 text-3xl font-black text-blue-500">
                 ★
               </span>
-              <span className="text-2xl font-black text-foreground transition-all duration-300">
+              <span className="text-2xl font-black text-foreground transition-all duration-300" style={{fontFamily: "'Orbitron', 'Exo 2', sans-serif"}}>
                 Star
               </span>
             </div>

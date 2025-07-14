@@ -1,5 +1,6 @@
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
+import FixedStarLogo from "@/components/FixedStarLogo";
 import Services from "@/components/Services";
 import Approach from "@/components/Approach";
 import Contact from "@/components/Contact";
@@ -8,6 +9,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       <Navigation />
+      <FixedStarLogo />
       <Hero />
       <Services />
       <Approach />
