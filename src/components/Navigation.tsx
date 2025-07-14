@@ -31,7 +31,20 @@ const Navigation = () => {
     >
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          {/* Logo removed */}
+          {/* Logo */}
+          <div className="flex items-center space-x-1">
+            <div className="logo-text flex items-center">
+              <span className="text-2xl font-black text-foreground transition-all duration-300">
+                Artificial
+              </span>
+              <span className="star-symbol mx-2 text-3xl font-black text-blue-500">
+                ★
+              </span>
+              <span className="text-2xl font-black text-foreground transition-all duration-300">
+                Star
+              </span>
+            </div>
+          </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
