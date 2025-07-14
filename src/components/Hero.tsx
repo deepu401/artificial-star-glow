@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
+import StarLogo from "@/components/StarLogo";
 
 const Hero = () => {
   return (
@@ -15,10 +16,11 @@ const Hero = () => {
         <div className="max-w-4xl mx-auto text-center">
           {/* Animated logo */}
           <div className="mb-8 animate-scale-in">
-            <img 
-              src="/lovable-uploads/0d6b2a16-ee14-414a-8cf2-ad592e118dc4.png" 
-              alt="Artificial Star Logo"
-              className="w-24 h-24 mx-auto mb-6 animate-float hover:scale-110 transition-transform duration-500 filter drop-shadow-glow"
+            <StarLogo
+              size={60}
+              animated={true}
+              glowIntensity={0.9}
+              rotationSpeed={1.5}
             />
           </div>
           
