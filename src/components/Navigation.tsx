@@ -32,15 +32,18 @@ const Navigation = () => {
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <div className="flex items-center space-x-3">
-            <img 
-              src="/lovable-uploads/67b95d87-503c-4cf7-a292-4ed2f14bf7e6.png" 
-              alt="Artificial Star"
-              className="h-8 w-auto transition-all duration-300 hover:scale-110 hover:drop-shadow-glow"
-            />
-            <span className="text-xl font-bold text-foreground hover:text-primary transition-colors duration-300">
-              Artificial Star
-            </span>
+          <div className="flex items-center space-x-1">
+            <div className="logo-text">
+              <span className="text-2xl font-bold text-foreground transition-all duration-300 hover:text-shadow-3d">
+                Artificial
+              </span>
+              <span className="star-symbol mx-2 text-3xl font-bold bg-gradient-to-r from-primary to-primary-light bg-clip-text text-transparent animate-pulse">
+                ★
+              </span>
+              <span className="text-2xl font-bold text-foreground transition-all duration-300 hover:text-shadow-3d">
+                Star
+              </span>
+            </div>
           </div>
 
           {/* Desktop Navigation */}
