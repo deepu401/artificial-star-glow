@@ -18,10 +18,10 @@ const FixedStarLogo = () => {
   }, []);
 
   // Transform values based on scroll - move to navbar beside "Artificial Star"
-  const scale = useTransform(scrollY, [0, 100], [1, 0.2]);
-  const x = useTransform(scrollY, [0, 100], [0, -650]);
-  const y = useTransform(scrollY, [0, 100], [0, -300]);
-  const opacity = useTransform(scrollY, [0, 50, 100], [1, 0.9, 1]);
+  const scale = useTransform(scrollY, [0, 100], [1, 0.4]);
+  const x = useTransform(scrollY, [0, 100], [0, -580]);
+  const y = useTransform(scrollY, [0, 100], [0, -280]);
+  const opacity = useTransform(scrollY, [0, 100], [1, 1]);
 
   return (
     <motion.div 
