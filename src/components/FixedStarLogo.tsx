@@ -18,14 +18,14 @@ const FixedStarLogo = () => {
   }, []);
 
   // Transform values based on scroll
-  const scale = useTransform(scrollY, [0, 100], [1, 0.2]);
-  const x = useTransform(scrollY, [0, 100], [0, -300]);
-  const y = useTransform(scrollY, [0, 100], [0, -60]);
-  const opacity = useTransform(scrollY, [0, 50, 100], [1, 0.8, 0]);
+  const scale = useTransform(scrollY, [0, 200], [1, 0.15]);
+  const x = useTransform(scrollY, [0, 200], [0, -400]);
+  const y = useTransform(scrollY, [0, 200], [0, -350]);
+  const opacity = useTransform(scrollY, [0, 150, 200], [1, 0.7, 0]);
 
   return (
     <motion.div 
-      className="fixed top-20 left-1/2 transform -translate-x-1/2 z-40 pointer-events-none"
+      className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-40 pointer-events-none"
       style={{ 
         scale,
         x,
