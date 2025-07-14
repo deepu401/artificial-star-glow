@@ -12,12 +12,10 @@ const Hero = () => {
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-primary/40 rounded-full blur-2xl animate-glow-pulse"></div>
       </div>
 
-      <div className="container mx-auto px-6 relative z-10 py-[128px] my-[140px]">
-        <div className="max-w-4xl text-center pt-32 mx-0 px-0 py-[12px]">
+      <div className="container mx-auto px-6 relative z-10 py-8">
+        <div className="max-w-4xl text-center pt-16 mx-0 px-0 py-[12px]">
           {/* Main headline */}
-          <motion.h1 style={{
-          fontFamily: "'Orbitron', 'Exo 2', sans-serif"
-        }} initial={{
+          <motion.h1 className="handjet-font text-6xl mb-8 tracking-tight md:text-5xl font-bold" initial={{
           opacity: 0,
           y: 30
         }} animate={{
@@ -26,7 +24,7 @@ const Hero = () => {
         }} transition={{
           duration: 0.8,
           ease: "easeOut"
-        }} className="text-6xl mb-8 tracking-tight md:text-5xl font-bold">
+        }}>
             <motion.span className="bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent block mb-4" animate={{
             backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
           }} transition={{
