@@ -41,10 +41,10 @@ const Navigation = () => {
               <motion.div 
                 className="mx-2 relative" 
                 style={{ width: 40, height: 40 }}
-                initial={{ opacity: 0, scale: 0 }}
+                initial={{ opacity: 1, scale: 1 }}
                 animate={{ 
-                  opacity: isScrolled ? 1 : 0, 
-                  scale: isScrolled ? 1 : 0 
+                  opacity: 1, 
+                  scale: 1 
                 }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
               >
