@@ -12,8 +12,8 @@ const Hero = () => {
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-primary/40 rounded-full blur-2xl animate-glow-pulse"></div>
       </div>
 
-      <div className="container mx-auto px-6 py-20 relative z-10">
-        <div className="max-w-4xl mx-auto text-center pt-32">
+      <div className="container mx-auto px-6 relative z-10 py-[128px] my-[140px]">
+        <div className="max-w-4xl text-center pt-32 mx-0 px-0 py-[12px]">
           {/* Main headline */}
           <motion.h1 style={{
           fontFamily: "'Orbitron', 'Exo 2', sans-serif"
