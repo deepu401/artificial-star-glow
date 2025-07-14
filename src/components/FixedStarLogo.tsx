@@ -1,12 +1,38 @@
 "use client";
 
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useState, useEffect } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Star, Sparkles, Zap } from "lucide-react";
 
 const FixedStarLogo = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const { scrollY } = useScroll();
+  
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Transform values based on scroll
+  const scale = useTransform(scrollY, [0, 100], [1, 0.2]);
+  const x = useTransform(scrollY, [0, 100], [0, -300]);
+  const y = useTransform(scrollY, [0, 100], [0, -60]);
+  const opacity = useTransform(scrollY, [0, 50, 100], [1, 0.8, 0]);
+
   return (
-    <div className="fixed top-20 left-1/2 transform -translate-x-1/2 z-40 pointer-events-none">
+    <motion.div 
+      className="fixed top-20 left-1/2 transform -translate-x-1/2 z-40 pointer-events-none"
+      style={{ 
+        scale,
+        x,
+        y,
+        opacity
+      }}
+    >
       <motion.div
         className="relative"
         style={{ width: 200, height: 200 }}
@@ -132,7 +158,7 @@ const FixedStarLogo = () => {
           ))}
         </motion.div>
       </motion.div>
-    </div>
+    </motion.div>
   );
 };
 

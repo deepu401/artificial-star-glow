@@ -38,7 +38,16 @@ const Navigation = () => {
               <span className="text-2xl font-black text-foreground transition-all duration-300" style={{fontFamily: "'Orbitron', 'Exo 2', sans-serif"}}>
                 Artificial
               </span>
-              <div className="mx-2 relative" style={{ width: 40, height: 40 }}>
+              <motion.div 
+                className="mx-2 relative" 
+                style={{ width: 40, height: 40 }}
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ 
+                  opacity: isScrolled ? 1 : 0, 
+                  scale: isScrolled ? 1 : 0 
+                }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+              >
                 <motion.div
                   className="absolute inset-0 flex items-center justify-center"
                   animate={{ rotate: 360 }}
@@ -65,7 +74,7 @@ const Navigation = () => {
                     />
                   </motion.div>
                 </motion.div>
-              </div>
+              </motion.div>
               <span className="text-2xl font-black text-foreground transition-all duration-300" style={{fontFamily: "'Orbitron', 'Exo 2', sans-serif"}}>
                 Star
               </span>
