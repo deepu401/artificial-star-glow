@@ -15,7 +15,7 @@ const Hero = () => {
       <div className="container mx-auto px-6 relative z-10 py-8">
         <div className="max-w-4xl text-center pt-16 mx-0 px-0 py-[12px]">
           {/* Main headline */}
-          <motion.h1 className="handjet-font text-6xl mb-8 tracking-tight md:text-5xl font-bold" initial={{
+          <motion.h1 className="font-handjet text-6xl mb-8 tracking-tight md:text-5xl font-bold" initial={{
           opacity: 0,
           y: 30
         }} animate={{

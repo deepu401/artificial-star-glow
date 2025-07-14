@@ -20,6 +20,7 @@ export default {
 		extend: {
 			fontFamily: {
 				sans: ['Inter', 'system-ui', 'sans-serif'],
+				handjet: ['Handjet', 'sans-serif'],
 			},
 			colors: {
 				// Core backgrounds

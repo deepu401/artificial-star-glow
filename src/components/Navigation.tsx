@@ -33,18 +33,18 @@ const Navigation = () => {
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <div className="flex items-center space-x-1">
+          <div className="flex items-center">
             <div className="logo-text flex items-center">
-              <span className="text-2xl font-black text-foreground transition-all duration-300" style={{fontFamily: "'Orbitron', 'Exo 2', sans-serif"}}>
-                Artificial
+              <span className="text-2xl font-black text-foreground transition-all duration-300 font-handjet">
+                Artificial Star
               </span>
               <motion.div 
-                className="mx-2 relative" 
+                className="ml-3 relative" 
                 style={{ width: 40, height: 40 }}
                 initial={{ opacity: 0, scale: 0 }}
                 animate={{ 
-                  opacity: isScrolled ? 1 : 0, 
-                  scale: isScrolled ? 1 : 0 
+                  opacity: 1, 
+                  scale: 1 
                 }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
               >
@@ -75,9 +75,6 @@ const Navigation = () => {
                   </motion.div>
                 </motion.div>
               </motion.div>
-              <span className="text-2xl font-black text-foreground transition-all duration-300" style={{fontFamily: "'Orbitron', 'Exo 2', sans-serif"}}>
-                Star
-              </span>
             </div>
           </div>
 
