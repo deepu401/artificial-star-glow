@@ -34,13 +34,13 @@ const Navigation = () => {
           {/* Logo */}
           <div className="flex items-center space-x-1">
             <div className="logo-text">
-              <span className="text-2xl font-bold text-foreground transition-all duration-300 hover:text-shadow-3d">
+              <span className="text-2xl font-black text-foreground transition-all duration-300 hover:text-shadow-3d">
                 Artificial
               </span>
-              <span className="star-symbol mx-2 text-3xl font-bold bg-gradient-to-r from-primary to-primary-light bg-clip-text text-transparent animate-pulse">
+              <span className="star-symbol mx-2 text-4xl font-black bg-gradient-to-r from-primary to-primary-light bg-clip-text text-transparent animate-pulse drop-shadow-glow">
                 ★
               </span>
-              <span className="text-2xl font-bold text-foreground transition-all duration-300 hover:text-shadow-3d">
+              <span className="text-2xl font-black text-foreground transition-all duration-300 hover:text-shadow-3d">
                 Star
               </span>
             </div>
