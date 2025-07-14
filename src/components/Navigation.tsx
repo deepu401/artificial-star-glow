@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Star, Sparkles } from "lucide-react";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -37,9 +38,34 @@ const Navigation = () => {
               <span className="text-2xl font-black text-foreground transition-all duration-300" style={{fontFamily: "'Orbitron', 'Exo 2', sans-serif"}}>
                 Artificial
               </span>
-              <span className="star-symbol mx-2 text-3xl font-black text-blue-500">
-                ★
-              </span>
+              <div className="mx-2 relative" style={{ width: 40, height: 40 }}>
+                <motion.div
+                  className="absolute inset-0 flex items-center justify-center"
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                >
+                  <Star
+                    size={32}
+                    className="text-blue-400 fill-blue-400/20"
+                    style={{
+                      filter: `drop-shadow(0 0 12px rgba(59, 130, 246, 0.6))`,
+                    }}
+                  />
+                  <motion.div
+                    className="absolute inset-0 flex items-center justify-center"
+                    animate={{ rotate: -360 }}
+                    transition={{ duration: 16, repeat: Infinity, ease: "linear" }}
+                  >
+                    <Sparkles
+                      size={12}
+                      className="text-purple-400 fill-purple-400/30"
+                      style={{
+                        filter: `drop-shadow(0 0 8px rgba(147, 51, 234, 0.5))`,
+                      }}
+                    />
+                  </motion.div>
+                </motion.div>
+              </div>
               <span className="text-2xl font-black text-foreground transition-all duration-300" style={{fontFamily: "'Orbitron', 'Exo 2', sans-serif"}}>
                 Star
               </span>
