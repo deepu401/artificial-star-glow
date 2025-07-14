@@ -17,15 +17,15 @@ const FixedStarLogo = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Transform values based on scroll
-  const scale = useTransform(scrollY, [0, 100], [1, 0.2]);
-  const x = useTransform(scrollY, [0, 100], [0, -300]);
-  const y = useTransform(scrollY, [0, 100], [0, -60]);
-  const opacity = useTransform(scrollY, [0, 50, 100], [1, 0.8, 0]);
+  // Transform values based on scroll - move to navbar position
+  const scale = useTransform(scrollY, [0, 100], [1, 0.3]);
+  const x = useTransform(scrollY, [0, 100], [0, -400]);
+  const y = useTransform(scrollY, [0, 100], [0, -350]);
+  const opacity = useTransform(scrollY, [0, 50, 100], [1, 0.9, 0.8]);
 
   return (
     <motion.div 
-      className="fixed top-20 left-1/2 transform -translate-x-1/2 z-40 pointer-events-none"
+      className="fixed top-36 right-32 z-40 pointer-events-none"
       style={{ 
         scale,
         x,
