@@ -18,11 +18,18 @@ const buttonVariants = cva(
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
+        
+        // Premium Artificial Star variants
+        premium: "bg-gradient-primary text-foreground font-semibold shadow-glow hover:shadow-glow-purple hover:scale-105 transition-all duration-300 ease-spring border border-primary/30",
+        hero: "bg-gradient-primary text-foreground font-bold text-lg px-8 py-4 shadow-glow hover:shadow-glow-purple hover:scale-105 transition-all duration-300 ease-spring border border-primary/30",
+        glass: "bg-background-card/50 backdrop-blur-sm text-foreground border border-border-subtle hover:bg-background-elevated/50 hover:border-primary/30 transition-all duration-300",
+        minimal: "text-foreground-muted hover:text-foreground hover:bg-background-card/50 transition-all duration-300",
       },
       size: {
         default: "h-10 px-4 py-2",
         sm: "h-9 rounded-md px-3",
         lg: "h-11 rounded-md px-8",
+        xl: "h-12 rounded-lg px-12 text-base",
         icon: "h-10 w-10",
       },
     },
