@@ -31,20 +31,7 @@ const Navigation = () => {
     >
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          {/* Logo */}
-          <div className="flex items-center space-x-1">
-            <div className="logo-text">
-              <span className="text-2xl font-black text-foreground transition-all duration-300 hover:text-shadow-3d">
-                Artificial
-              </span>
-              <span className="star-symbol mx-2 text-4xl font-black bg-gradient-to-r from-primary to-primary-light bg-clip-text text-transparent animate-pulse drop-shadow-glow">
-                ★
-              </span>
-              <span className="text-2xl font-black text-foreground transition-all duration-300 hover:text-shadow-3d">
-                Star
-              </span>
-            </div>
-          </div>
+          {/* Logo removed */}
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
