@@ -1,7 +1,14 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown, Bot, Mic, Zap, Palette, Lightbulb } from "lucide-react";
+import { Link } from "react-router-dom";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import StarLogo from "./StarLogo";
 import AIJourneyModal from "./AIJourneyModal";
 const Navigation = () => {
@@ -15,16 +22,18 @@ const Navigation = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-  const navItems = [{
-    name: "Services",
-    href: "#services"
-  }, {
-    name: "Blog",
-    href: "/blog"
-  }, {
-    name: "Contact",
-    href: "#contact"
-  }];
+  const services = [
+    { name: "Custom Chatbots", href: "/service/custom-chatbots", icon: Bot },
+    { name: "Voice Agents", href: "/service/voice-agents", icon: Mic },
+    { name: "Intelligent Automation", href: "/service/intelligent-automation", icon: Zap },
+    { name: "Website Design", href: "/service/website-design", icon: Palette },
+    { name: "Custom Solutions", href: "/service/custom-solutions", icon: Lightbulb }
+  ];
+
+  const navItems = [
+    { name: "Blog", href: "/blog" },
+    { name: "Contact", href: "#contact" }
+  ];
   return <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${isScrolled ? "bg-background/80 backdrop-blur-xl border-b border-border-subtle" : "bg-transparent"}`}>
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
@@ -40,9 +49,36 @@ const Navigation = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            {navItems.map(item => <a key={item.name} href={item.href} className="text-foreground-muted hover:text-foreground transition-colors duration-300 font-medium hover:scale-105 transform">
+            <DropdownMenu>
+              <DropdownMenuTrigger className="flex items-center gap-1 text-foreground-muted hover:text-foreground transition-colors duration-300 font-medium hover:scale-105 transform">
+                Services
+                <ChevronDown size={16} />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-56 bg-background/95 backdrop-blur-xl border border-border-subtle">
+                {services.map(service => {
+                  const Icon = service.icon;
+                  return (
+                    <DropdownMenuItem key={service.name} asChild>
+                      <Link to={service.href} className="flex items-center gap-3 px-3 py-2 hover:bg-primary/10 transition-colors">
+                        <Icon size={16} className="text-primary" />
+                        <span>{service.name}</span>
+                      </Link>
+                    </DropdownMenuItem>
+                  );
+                })}
+              </DropdownMenuContent>
+            </DropdownMenu>
+            
+            {navItems.map(item => (
+              <Link 
+                key={item.name} 
+                to={item.href} 
+                className="text-foreground-muted hover:text-foreground transition-colors duration-300 font-medium hover:scale-105 transform"
+              >
                 {item.name}
-              </a>)}
+              </Link>
+            ))}
+            
             <Button variant="premium" size="lg" onClick={() => setIsModalOpen(true)}>
               Start Your AI Journey
             </Button>
@@ -57,16 +93,46 @@ const Navigation = () => {
         </div>
 
         {/* Mobile Menu */}
-        {isMobileMenuOpen && <div className="md:hidden mt-6 pb-6 border-t border-border-subtle animate-fade-in">
+        {isMobileMenuOpen && (
+          <div className="md:hidden mt-6 pb-6 border-t border-border-subtle animate-fade-in">
             <div className="flex flex-col space-y-4 pt-6">
-              {navItems.map(item => <a key={item.name} href={item.href} className="text-foreground-muted hover:text-foreground transition-colors duration-300 font-medium py-2" onClick={() => setIsMobileMenuOpen(false)}>
+              <div className="mb-4">
+                <h4 className="text-foreground font-semibold mb-3">Services</h4>
+                <div className="flex flex-col space-y-2 pl-4">
+                  {services.map(service => {
+                    const Icon = service.icon;
+                    return (
+                      <Link 
+                        key={service.name} 
+                        to={service.href} 
+                        className="flex items-center gap-3 text-foreground-muted hover:text-foreground transition-colors duration-300 font-medium py-2"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        <Icon size={16} className="text-primary" />
+                        <span>{service.name}</span>
+                      </Link>
+                    );
+                  })}
+                </div>
+              </div>
+              
+              {navItems.map(item => (
+                <Link 
+                  key={item.name} 
+                  to={item.href} 
+                  className="text-foreground-muted hover:text-foreground transition-colors duration-300 font-medium py-2" 
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
                   {item.name}
-                </a>)}
+                </Link>
+              ))}
+              
               <Button variant="premium" size="lg" className="mt-4" onClick={() => setIsModalOpen(true)}>
                 Start Your AI Journey
               </Button>
             </div>
-          </div>}
+          </div>
+        )}
       </div>
       
       <AIJourneyModal open={isModalOpen} onOpenChange={setIsModalOpen} />

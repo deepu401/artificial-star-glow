@@ -1,5 +1,6 @@
-import { Bot, Mic, Zap, Palette, ArrowRight } from "lucide-react";
+import { Bot, Mic, Zap, Palette, Lightbulb, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const Services = () => {
   const services = [
@@ -13,7 +14,8 @@ const Services = () => {
         "Seamless integration",
         "Multi-platform support"
       ],
-      gradient: "from-primary to-primary-light"
+      gradient: "from-primary to-primary-light",
+      slug: "custom-chatbots"
     },
     {
       icon: Mic,
@@ -25,7 +27,8 @@ const Services = () => {
         "Cost reduction",
         "Real-time responses"
       ],
-      gradient: "from-accent to-accent-dark"
+      gradient: "from-accent to-accent-dark",
+      slug: "voice-agents"
     },
     {
       icon: Zap,
@@ -37,7 +40,8 @@ const Services = () => {
         "Seamless integration",
         "Custom workflows"
       ],
-      gradient: "from-primary-light to-accent"
+      gradient: "from-primary-light to-accent",
+      slug: "intelligent-automation"
     },
     {
       icon: Palette,
@@ -49,7 +53,21 @@ const Services = () => {
         "Fast loading",
         "Conversion optimization"
       ],
-      gradient: "from-accent to-primary"
+      gradient: "from-accent to-primary",
+      slug: "website-design"
+    },
+    {
+      icon: Lightbulb,
+      title: "Custom Solutions",
+      description: "Tailored AI solutions designed specifically for your unique business needs",
+      features: [
+        "Custom AI development",
+        "Industry-specific solutions",
+        "Legacy system integration",
+        "Scalable architecture"
+      ],
+      gradient: "from-primary to-accent",
+      slug: "custom-solutions"
     }
   ];
 
@@ -74,13 +92,14 @@ const Services = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8 mb-16">
           {services.map((service, index) => {
             const Icon = service.icon;
             return (
-              <div
+              <Link
                 key={service.title}
-                className="group relative bg-gradient-card backdrop-blur-sm rounded-xl p-8 border border-border-subtle hover:border-primary/30 transition-all duration-500 hover:scale-105 hover:shadow-glow animate-fade-in-up"
+                to={`/service/${service.slug}`}
+                className="group relative bg-gradient-card backdrop-blur-sm rounded-xl p-8 border border-border-subtle hover:border-primary/30 transition-all duration-500 hover:scale-105 hover:shadow-glow animate-fade-in-up block"
                 style={{animationDelay: `${0.2 + index * 0.1}s`}}
               >
                 {/* Icon */}
@@ -115,7 +134,7 @@ const Services = () => {
 
                 {/* Hover glow effect */}
                 <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-              </div>
+              </Link>
             );
           })}
         </div>
