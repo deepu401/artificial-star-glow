@@ -104,7 +104,7 @@ const Blog = () => {
 
         {/* View all posts CTA */}
         <div className="text-center animate-fade-in-up" style={{animationDelay: '0.8s'}}>
-          <Button variant="premium" size="xl">
+          <Button variant="premium" size="xl" onClick={() => window.location.href = '/blog'}>
             View All Articles
             <ArrowRight className="ml-2" />
           </Button>
