@@ -20,9 +20,6 @@ const Navigation = () => {
     name: "Approach",
     href: "#approach"
   }, {
-    name: "Logo Generator",
-    href: "/logo-generator"
-  }, {
     name: "Contact",
     href: "#contact"
   }];
