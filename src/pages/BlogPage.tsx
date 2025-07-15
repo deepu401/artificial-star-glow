@@ -10,7 +10,8 @@ const BlogPage = () => {
       date: "Dec 15, 2024",
       readTime: "5 min read",
       image: "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=400&h=250&fit=crop",
-      category: "AI Innovation"
+      category: "AI Innovation",
+      slug: "ai-chatbots-revolutionizing-customer-service"
     },
     {
       title: "The Future of Voice AI in Business",
@@ -18,7 +19,8 @@ const BlogPage = () => {
       date: "Dec 12, 2024", 
       readTime: "7 min read",
       image: "https://images.unsplash.com/photo-1589254065878-42c9da997008?w=400&h=250&fit=crop",
-      category: "Voice Technology"
+      category: "Voice Technology",
+      slug: "future-of-voice-ai-in-business"
     },
     {
       title: "ROI of Intelligent Automation: Real Case Studies",
@@ -26,7 +28,8 @@ const BlogPage = () => {
       date: "Dec 10, 2024",
       readTime: "6 min read", 
       image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=250&fit=crop",
-      category: "Business Impact"
+      category: "Business Impact",
+      slug: "roi-of-intelligent-automation"
     },
     {
       title: "Building Ethical AI: A Framework for Responsible Development",
@@ -34,7 +37,8 @@ const BlogPage = () => {
       date: "Dec 8, 2024",
       readTime: "8 min read",
       image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=250&fit=crop",
-      category: "AI Ethics"
+      category: "AI Ethics",
+      slug: "building-ethical-ai-framework"
     },
     {
       title: "The Rise of Conversational AI in E-commerce",
@@ -42,15 +46,17 @@ const BlogPage = () => {
       date: "Dec 5, 2024",
       readTime: "6 min read",
       image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=250&fit=crop",
-      category: "E-commerce"
+      category: "E-commerce",
+      slug: "conversational-ai-ecommerce"
     },
     {
       title: "Machine Learning vs Deep Learning: What's the Difference?",
       excerpt: "A comprehensive guide to understanding the key differences between machine learning and deep learning, with practical applications.",
       date: "Dec 1, 2024",
       readTime: "10 min read",
-      image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=250&fit=crop",
-      category: "Technology"
+      image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=400&h=250&fit=crop",
+      category: "Technology",
+      slug: "machine-learning-vs-deep-learning"
     }
   ];
 
@@ -129,7 +135,7 @@ const BlogPage = () => {
                     {post.excerpt}
                   </p>
 
-                  <Button variant="glass" className="w-full group-hover:bg-primary/10 group-hover:border-primary/50">
+                  <Button variant="glass" className="w-full group-hover:bg-primary/10 group-hover:border-primary/50" onClick={() => window.location.href = `/article/${post.slug}`}>
                     Read Article
                     <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
                   </Button>

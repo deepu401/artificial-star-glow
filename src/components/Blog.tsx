@@ -9,7 +9,8 @@ const Blog = () => {
       date: "Dec 15, 2024",
       readTime: "5 min read",
       image: "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=400&h=250&fit=crop",
-      category: "AI Innovation"
+      category: "AI Innovation",
+      slug: "ai-chatbots-revolutionizing-customer-service"
     },
     {
       title: "The Future of Voice AI in Business",
@@ -17,7 +18,8 @@ const Blog = () => {
       date: "Dec 12, 2024", 
       readTime: "7 min read",
       image: "https://images.unsplash.com/photo-1589254065878-42c9da997008?w=400&h=250&fit=crop",
-      category: "Voice Technology"
+      category: "Voice Technology",
+      slug: "future-of-voice-ai-in-business"
     },
     {
       title: "ROI of Intelligent Automation: Real Case Studies",
@@ -25,7 +27,8 @@ const Blog = () => {
       date: "Dec 10, 2024",
       readTime: "6 min read", 
       image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=250&fit=crop",
-      category: "Business Impact"
+      category: "Business Impact",
+      slug: "roi-of-intelligent-automation"
     }
   ];
 
@@ -93,10 +96,10 @@ const Blog = () => {
                   {post.excerpt}
                 </p>
 
-                <Button variant="glass" className="w-full group-hover:bg-primary/10 group-hover:border-primary/50">
-                  Read More
-                  <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
-                </Button>
+                  <Button variant="glass" className="w-full group-hover:bg-primary/10 group-hover:border-primary/50" onClick={() => window.location.href = `/article/${post.slug}`}>
+                    Read More
+                    <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+                  </Button>
               </div>
             </article>
           ))}
