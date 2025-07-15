@@ -3,7 +3,6 @@ import { ArrowRight, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 const Hero = () => {
-  
   return <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-hero">
       {/* Animated background elements */}
       <div className="absolute inset-0 opacity-20">
@@ -63,9 +62,7 @@ const Hero = () => {
           duration: 0.8,
           delay: 0.3,
           ease: "easeOut"
-        }}>
-            Transform your business with AI solutions that don't just automate - they illuminate new possibilities.
-          </motion.p>
+        }}>Transform your business with AI solutions that don't just automate - they illuminate new possibilities.</motion.p>
           
           {/* CTA Button */}
           <motion.div className="flex flex-col sm:flex-row gap-4 justify-center items-center" initial={{
@@ -97,7 +94,9 @@ const Hero = () => {
           }} whileTap={{
             scale: 0.95
           }}>
-              <Button variant="glass" size="xl" className="group" onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}>
+              <Button variant="glass" size="xl" className="group" onClick={() => document.getElementById('services')?.scrollIntoView({
+              behavior: 'smooth'
+            })}>
                 <Sparkles className="mr-2 group-hover:rotate-12 transition-transform duration-300" />
                 Explore Services
               </Button>
