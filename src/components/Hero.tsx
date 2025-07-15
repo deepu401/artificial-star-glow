@@ -24,7 +24,7 @@ const Hero = () => {
         }} transition={{
           duration: 0.8,
           ease: "easeOut"
-        }} className="font-tomorrow mb-12 tracking-wide md:text-5xl font-light text-4xl md:text-left text-center leading-tight">
+        }} className="font-tomorrow mb-12 tracking-wide md:text-5xl font-light text-4xl md:text-left leading-tight text-left mx-0">
             <motion.span animate={{
             backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
           }} transition={{
@@ -33,7 +33,7 @@ const Hero = () => {
             ease: "linear"
           }} style={{
             backgroundSize: "200% 200%"
-          }} className="bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent block mb-4 mx-0 px-0 my-[21px]">
+          }} className="bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent block mb-4 mx-0 px-0 my-[18px]">
               ILLUMINATING THE FUTURE
             </motion.span>
             <motion.span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent" animate={{
