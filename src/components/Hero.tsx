@@ -1,10 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
-import { useState } from "react";
-import AIJourneyModal from "./AIJourneyModal";
+import { Link } from "react-router-dom";
 const Hero = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
   
   return <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-hero">
       {/* Animated background elements */}
@@ -86,9 +84,11 @@ const Hero = () => {
           }} whileTap={{
             scale: 0.95
           }}>
-              <Button variant="hero" size="xl" className="group" onClick={() => setIsModalOpen(true)}>
-                Start Your AI Journey
-                <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+              <Button variant="hero" size="xl" className="group" asChild>
+                <Link to="/ai-journey">
+                  Start Your AI Journey
+                  <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+                </Link>
               </Button>
             </motion.div>
             
@@ -140,7 +140,7 @@ const Hero = () => {
         </div>
       </div>
       
-      <AIJourneyModal open={isModalOpen} onOpenChange={setIsModalOpen} />
+      
     </section>;
 };
 export default Hero;

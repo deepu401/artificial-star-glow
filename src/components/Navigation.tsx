@@ -10,11 +10,9 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import StarLogo from "./StarLogo";
-import AIJourneyModal from "./AIJourneyModal";
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -79,8 +77,8 @@ const Navigation = () => {
               </Link>
             ))}
             
-            <Button variant="premium" size="lg" onClick={() => setIsModalOpen(true)}>
-              Start Your AI Journey
+            <Button variant="premium" size="lg" asChild>
+              <Link to="/ai-journey">Start Your AI Journey</Link>
             </Button>
           </div>
 
@@ -127,15 +125,15 @@ const Navigation = () => {
                 </Link>
               ))}
               
-              <Button variant="premium" size="lg" className="mt-4" onClick={() => setIsModalOpen(true)}>
-                Start Your AI Journey
+              <Button variant="premium" size="lg" className="mt-4" asChild>
+                <Link to="/ai-journey">Start Your AI Journey</Link>
               </Button>
             </div>
           </div>
         )}
       </div>
       
-      <AIJourneyModal open={isModalOpen} onOpenChange={setIsModalOpen} />
+      
     </nav>;
 };
 export default Navigation;

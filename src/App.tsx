@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import BlogPage from "./pages/BlogPage";
 import ArticlePage from "./pages/ArticlePage";
 import ServicePage from "./pages/ServicePage";
+import AIJourneyForm from "./components/AIJourneyForm";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -22,6 +23,7 @@ const App = () => (
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/article/:slug" element={<ArticlePage />} />
           <Route path="/service/:slug" element={<ServicePage />} />
+          <Route path="/ai-journey" element={<AIJourneyForm />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
