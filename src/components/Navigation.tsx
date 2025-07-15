@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import { Link } from "react-router-dom";
 import StarLogo from "./StarLogo";
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -41,9 +42,17 @@ const Navigation = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            {navItems.map(item => <a key={item.name} href={item.href} className="text-foreground-muted hover:text-foreground transition-colors duration-300 font-medium hover:scale-105 transform">
-                {item.name}
-              </a>)}
+            {navItems.map(item => 
+              item.href.startsWith('#') ? (
+                <a key={item.name} href={item.href} className="text-foreground-muted hover:text-foreground transition-colors duration-300 font-medium hover:scale-105 transform">
+                  {item.name}
+                </a>
+              ) : (
+                <Link key={item.name} to={item.href} className="text-foreground-muted hover:text-foreground transition-colors duration-300 font-medium hover:scale-105 transform">
+                  {item.name}
+                </Link>
+              )
+            )}
             <Button variant="premium" size="lg">
               Start Your AI Journey
             </Button>
@@ -60,9 +69,17 @@ const Navigation = () => {
         {/* Mobile Menu */}
         {isMobileMenuOpen && <div className="md:hidden mt-6 pb-6 border-t border-border-subtle animate-fade-in">
             <div className="flex flex-col space-y-4 pt-6">
-              {navItems.map(item => <a key={item.name} href={item.href} className="text-foreground-muted hover:text-foreground transition-colors duration-300 font-medium py-2" onClick={() => setIsMobileMenuOpen(false)}>
-                  {item.name}
-                </a>)}
+              {navItems.map(item => 
+                item.href.startsWith('#') ? (
+                  <a key={item.name} href={item.href} className="text-foreground-muted hover:text-foreground transition-colors duration-300 font-medium py-2" onClick={() => setIsMobileMenuOpen(false)}>
+                    {item.name}
+                  </a>
+                ) : (
+                  <Link key={item.name} to={item.href} className="text-foreground-muted hover:text-foreground transition-colors duration-300 font-medium py-2" onClick={() => setIsMobileMenuOpen(false)}>
+                    {item.name}
+                  </Link>
+                )
+              )}
               <Button variant="premium" size="lg" className="mt-4">
                 Start Your AI Journey
               </Button>
