@@ -180,60 +180,54 @@ const LogoGenerator = () => {
   ];
 
   const downloadLogo = async (size: number, name: string, showText?: boolean) => {
+    // Create a temporary container with high DPI
+    const tempContainer = document.createElement('div');
+    tempContainer.style.position = 'absolute';
+    tempContainer.style.top = '-9999px';
+    tempContainer.style.left = '-9999px';
+    tempContainer.style.width = `${size}px`;
+    tempContainer.style.height = `${size}px`;
+    tempContainer.style.backgroundColor = 'transparent';
+    document.body.appendChild(tempContainer);
+
+    // Create React element and render it
+    const { createRoot } = await import('react-dom/client');
+    const root = createRoot(tempContainer);
+    
+    // Wait for the component to render
+    await new Promise<void>((resolve) => {
+      root.render(
+        <Logo 
+          size={size} 
+          showText={showText} 
+          compact={size < 64} 
+        />
+      );
+      setTimeout(resolve, 100); // Small delay to ensure rendering
+    });
+
     try {
-      // Create a temporary container
-      const tempContainer = document.createElement('div');
-      tempContainer.style.position = 'fixed';
-      tempContainer.style.top = '-9999px';
-      tempContainer.style.left = '-9999px';
-      tempContainer.style.width = `${size}px`;
-      tempContainer.style.height = `${size}px`;
-      tempContainer.style.backgroundColor = 'transparent';
-      tempContainer.style.pointerEvents = 'none';
-      document.body.appendChild(tempContainer);
-
-      // Render the logo directly into the container
-      tempContainer.innerHTML = `
-        <div style="width: ${size}px; height: ${size}px; position: relative; display: flex; align-items: center; justify-content: center;">
-          <div style="position: absolute; width: ${size * 0.8 * 1.2}px; height: ${size * 0.8 * 1.2}px; background: radial-gradient(circle, rgba(59, 130, 246, 0.27) 0%, rgba(147, 51, 234, 0.18) 50%, transparent 70%); filter: blur(8px); border-radius: 50%;"></div>
-          <div style="position: absolute; width: ${size * 0.8}px; height: ${size * 0.8}px; background: radial-gradient(circle, rgba(59, 130, 246, 0.36) 0%, rgba(147, 51, 234, 0.27) 60%, transparent 80%); filter: blur(6px); border-radius: 50%;"></div>
-          <svg width="${size * 0.8 * 0.7}" height="${size * 0.8 * 0.7}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #60A5FA; fill: rgba(96, 165, 250, 0.2); filter: drop-shadow(0 0 ${size * 0.8 * 0.2}px rgba(59, 130, 246, 0.9));">
-            <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"></polygon>
-          </svg>
-          <div style="position: absolute; width: ${size * 0.8 * 0.1}px; height: ${size * 0.8 * 0.1}px; border-radius: 50%; background: linear-gradient(to right, #60A5FA, #A855F7); box-shadow: 0 0 ${size * 0.8 * 0.3}px rgba(59, 130, 246, 0.9);"></div>
-        </div>
-      `;
-
-      // Wait a moment for rendering
-      await new Promise(resolve => setTimeout(resolve, 100));
-
-      // Capture with html2canvas
+      // Capture with html2canvas at high resolution
       const canvas = await html2canvas(tempContainer, {
         width: size,
         height: size,
-        scale: 3,
-        backgroundColor: null,
+        scale: 2, // 2x for retina displays
+        backgroundColor: null, // Transparent background
         useCORS: true,
         allowTaint: true,
-        logging: false,
       });
 
-      // Download the image
+      // Create download link
       const link = document.createElement('a');
       link.download = `${name.replace(/\s+/g, '_').toLowerCase()}.png`;
-      link.href = canvas.toDataURL('image/png', 1.0);
-      
-      // Trigger download without navigation
-      document.body.appendChild(link);
+      link.href = canvas.toDataURL('image/png');
       link.click();
-      document.body.removeChild(link);
-
-      // Clean up
-      document.body.removeChild(tempContainer);
-
     } catch (error) {
       console.error('Error generating logo:', error);
-      alert('Error generating logo. Please try again.');
+    } finally {
+      // Cleanup
+      root.unmount();
+      document.body.removeChild(tempContainer);
     }
   };
 
