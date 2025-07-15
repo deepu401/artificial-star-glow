@@ -1,4 +1,4 @@
-import { Bot, Mic, Zap, ArrowRight } from "lucide-react";
+import { Bot, Mic, Zap, Palette, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Services = () => {
@@ -38,6 +38,18 @@ const Services = () => {
         "Custom workflows"
       ],
       gradient: "from-primary-light to-accent"
+    },
+    {
+      icon: Palette,
+      title: "Website Design",
+      description: "Professional, responsive websites with modern design and SEO optimization",
+      features: [
+        "Modern responsive design",
+        "SEO optimization", 
+        "Fast loading",
+        "Conversion optimization"
+      ],
+      gradient: "from-accent to-primary"
     }
   ];
 
@@ -58,11 +70,11 @@ const Services = () => {
             <span className="text-foreground">That Transform</span>
           </h2>
           <p className="text-xl text-foreground-muted max-w-3xl mx-auto animate-fade-in-up" style={{animationDelay: '0.2s'}}>
-            We specialize in three core areas that drive real business results
+            We specialize in four core areas that drive real business results
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
           {services.map((service, index) => {
             const Icon = service.icon;
             return (

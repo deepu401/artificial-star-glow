@@ -35,8 +35,8 @@ const Contact = () => {
     {
       icon: Mail,
       title: "Email",
-      value: "hello@artificialstar.ai",
-      href: "mailto:hello@artificialstar.ai"
+      value: "hello@artificialstr.ai",
+      href: "mailto:hello@artificialstr.ai"
     },
     {
       icon: Phone,
@@ -205,13 +205,21 @@ const Contact = () => {
                   })}
                 </div>
 
-                {/* Response time */}
-                <div className="bg-gradient-card backdrop-blur-sm rounded-xl p-6 border border-border-subtle">
-                  <h4 className="text-lg font-semibold text-foreground mb-2">Quick Response</h4>
-                  <p className="text-foreground-muted text-sm">
-                    We typically respond within 24 hours. For urgent inquiries, 
-                    please call us directly.
-                  </p>
+                {/* Response time and availability */}
+                <div className="space-y-4">
+                  <div className="bg-gradient-card backdrop-blur-sm rounded-xl p-6 border border-border-subtle">
+                    <h4 className="text-lg font-semibold text-foreground mb-2">Available 24/7</h4>
+                    <p className="text-foreground-muted text-sm">
+                      We're available around the clock for AI emergencies and urgent consultations.
+                    </p>
+                  </div>
+                  <div className="bg-gradient-card backdrop-blur-sm rounded-xl p-6 border border-border-subtle">
+                    <h4 className="text-lg font-semibold text-foreground mb-2">Quick Response</h4>
+                    <p className="text-foreground-muted text-sm">
+                      We typically respond within 24 hours. For urgent inquiries, 
+                      please call us directly.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>

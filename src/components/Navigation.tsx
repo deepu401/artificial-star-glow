@@ -3,9 +3,11 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import StarLogo from "./StarLogo";
+import AIJourneyModal from "./AIJourneyModal";
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -41,7 +43,7 @@ const Navigation = () => {
             {navItems.map(item => <a key={item.name} href={item.href} className="text-foreground-muted hover:text-foreground transition-colors duration-300 font-medium hover:scale-105 transform">
                 {item.name}
               </a>)}
-            <Button variant="premium" size="lg">
+            <Button variant="premium" size="lg" onClick={() => setIsModalOpen(true)}>
               Start Your AI Journey
             </Button>
           </div>
@@ -60,12 +62,14 @@ const Navigation = () => {
               {navItems.map(item => <a key={item.name} href={item.href} className="text-foreground-muted hover:text-foreground transition-colors duration-300 font-medium py-2" onClick={() => setIsMobileMenuOpen(false)}>
                   {item.name}
                 </a>)}
-              <Button variant="premium" size="lg" className="mt-4">
+              <Button variant="premium" size="lg" className="mt-4" onClick={() => setIsModalOpen(true)}>
                 Start Your AI Journey
               </Button>
             </div>
           </div>}
       </div>
+      
+      <AIJourneyModal open={isModalOpen} onOpenChange={setIsModalOpen} />
     </nav>;
 };
 export default Navigation;

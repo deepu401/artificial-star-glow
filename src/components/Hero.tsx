@@ -1,7 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
+import { useState } from "react";
+import AIJourneyModal from "./AIJourneyModal";
 const Hero = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  
   return <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-hero">
       {/* Animated background elements */}
       <div className="absolute inset-0 opacity-20">
@@ -82,7 +86,7 @@ const Hero = () => {
           }} whileTap={{
             scale: 0.95
           }}>
-              <Button variant="hero" size="xl" className="group">
+              <Button variant="hero" size="xl" className="group" onClick={() => setIsModalOpen(true)}>
                 Start Your AI Journey
                 <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
               </Button>
@@ -93,14 +97,14 @@ const Hero = () => {
           }} whileTap={{
             scale: 0.95
           }}>
-              <Button variant="glass" size="xl" className="group">
+              <Button variant="glass" size="xl" className="group" onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}>
                 <Sparkles className="mr-2 group-hover:rotate-12 transition-transform duration-300" />
-                Illuminate Your Business
+                Explore Services
               </Button>
             </motion.div>
           </motion.div>
           
-          {/* Trust indicators */}
+          {/* Stats bar */}
           <motion.div className="mt-20" initial={{
           opacity: 0
         }} animate={{
@@ -109,25 +113,21 @@ const Hero = () => {
           duration: 0.8,
           delay: 0.9
         }}>
-            <motion.p className="text-sm text-foreground-subtle mb-8 uppercase tracking-wider" animate={{
-            opacity: [0.6, 1, 0.6]
-          }} transition={{
-            duration: 3,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}>
-              Illuminating businesses with intelligent solutions
-            </motion.p>
-            <div className="flex justify-center items-center space-x-8 opacity-60">
-              {[...Array(3)].map((_, i) => <motion.div key={i} className="w-24 h-8 bg-gradient-to-r from-blue-400/20 to-purple-400/20 rounded" animate={{
-              opacity: [0.3, 0.8, 0.3],
-              scale: [0.95, 1.05, 0.95]
-            }} transition={{
-              duration: 2.5,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: i * 0.3
-            }} />)}
+            <div className="flex flex-col md:flex-row justify-center items-center space-y-8 md:space-y-0 md:space-x-12 bg-gradient-card backdrop-blur-sm rounded-xl p-8 border border-border-subtle">
+              <div className="text-center">
+                <div className="text-3xl md:text-4xl font-bold text-primary mb-2">100+</div>
+                <div className="text-sm text-foreground-muted uppercase tracking-wide">AI Solutions Delivered</div>
+              </div>
+              <div className="hidden md:block w-px h-12 bg-border-subtle"></div>
+              <div className="text-center">
+                <div className="text-3xl md:text-4xl font-bold text-accent mb-2">50+</div>
+                <div className="text-sm text-foreground-muted uppercase tracking-wide">Happy Clients</div>
+              </div>
+              <div className="hidden md:block w-px h-12 bg-border-subtle"></div>
+              <div className="text-center">
+                <div className="text-3xl md:text-4xl font-bold text-primary-light mb-2">24/7</div>
+                <div className="text-sm text-foreground-muted uppercase tracking-wide">AI Support</div>
+              </div>
             </div>
           </motion.div>
         </div>
@@ -139,6 +139,8 @@ const Hero = () => {
           <div className="w-1 h-3 bg-foreground-muted rounded-full mt-2 animate-bounce"></div>
         </div>
       </div>
+      
+      <AIJourneyModal open={isModalOpen} onOpenChange={setIsModalOpen} />
     </section>;
 };
 export default Hero;
