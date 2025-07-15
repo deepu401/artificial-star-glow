@@ -24,7 +24,7 @@ const Hero = () => {
         }} transition={{
           duration: 0.8,
           ease: "easeOut"
-        }} className="font-handjet mb-8 tracking-tight md:text-5xl font-normal text-5xl text-left">
+        }} className="font-honk mb-12 tracking-wide md:text-5xl font-light text-4xl md:text-left text-center leading-tight">
             <motion.span animate={{
             backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
           }} transition={{
@@ -51,7 +51,7 @@ const Hero = () => {
           </motion.h1>
           
           {/* Subheadline */}
-          <motion.p className="text-xl md:text-2xl text-foreground-muted mb-12 max-w-4xl mx-auto leading-relaxed" initial={{
+          <motion.p className="text-lg md:text-xl text-foreground-muted mb-16 max-w-3xl mx-auto leading-loose font-light" initial={{
           opacity: 0,
           y: 20
         }} animate={{
