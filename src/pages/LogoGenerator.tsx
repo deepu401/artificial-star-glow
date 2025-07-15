@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import { Star, Sparkles, Zap, Download } from "lucide-react";
+import html2canvas from "html2canvas";
 
 interface LogoProps {
   size: number;
@@ -178,79 +179,56 @@ const LogoGenerator = () => {
     { name: "Web Icon 512x512", size: 512, type: "web" },
   ];
 
-  const downloadLogo = async (size: number, name: string) => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
+  const downloadLogo = async (size: number, name: string, showText?: boolean) => {
+    // Create a temporary container with high DPI
+    const tempContainer = document.createElement('div');
+    tempContainer.style.position = 'absolute';
+    tempContainer.style.top = '-9999px';
+    tempContainer.style.left = '-9999px';
+    tempContainer.style.width = `${size}px`;
+    tempContainer.style.height = `${size}px`;
+    tempContainer.style.backgroundColor = 'transparent';
+    document.body.appendChild(tempContainer);
 
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    // Set canvas size
-    canvas.width = size;
-    canvas.height = size;
-
-    // Create a temporary div to render the logo
-    const tempDiv = document.createElement('div');
-    tempDiv.style.position = 'absolute';
-    tempDiv.style.top = '-9999px';
-    tempDiv.style.width = `${size}px`;
-    tempDiv.style.height = `${size}px`;
-    document.body.appendChild(tempDiv);
-
-    // This is a simplified version - in a real app, you'd need to use html2canvas or similar
-    // For now, we'll create a basic canvas version
+    // Create React element and render it
+    const { createRoot } = await import('react-dom/client');
+    const root = createRoot(tempContainer);
     
-    // Background
-    const gradient = ctx.createRadialGradient(size/2, size/2, 0, size/2, size/2, size/2);
-    gradient.addColorStop(0, '#000000');
-    gradient.addColorStop(0.5, '#374151');
-    gradient.addColorStop(1, '#000000');
-    ctx.fillStyle = gradient;
-    ctx.fillRect(0, 0, size, size);
+    // Wait for the component to render
+    await new Promise<void>((resolve) => {
+      root.render(
+        <Logo 
+          size={size} 
+          showText={showText} 
+          compact={size < 64} 
+        />
+      );
+      setTimeout(resolve, 100); // Small delay to ensure rendering
+    });
 
-    // Star shape (simplified)
-    ctx.fillStyle = '#60A5FA';
-    ctx.shadowColor = '#3B82F6';
-    ctx.shadowBlur = size * 0.1;
-    
-    const centerX = size / 2;
-    const centerY = size / 2;
-    const outerRadius = size * 0.3;
-    const innerRadius = size * 0.15;
-    
-    ctx.beginPath();
-    for (let i = 0; i < 5; i++) {
-      const angle = (i * Math.PI * 2) / 5 - Math.PI / 2;
-      const x = centerX + Math.cos(angle) * outerRadius;
-      const y = centerY + Math.sin(angle) * outerRadius;
-      
-      if (i === 0) ctx.moveTo(x, y);
-      else ctx.lineTo(x, y);
-      
-      const innerAngle = angle + Math.PI / 5;
-      const innerX = centerX + Math.cos(innerAngle) * innerRadius;
-      const innerY = centerY + Math.sin(innerAngle) * innerRadius;
-      ctx.lineTo(innerX, innerY);
+    try {
+      // Capture with html2canvas at high resolution
+      const canvas = await html2canvas(tempContainer, {
+        width: size,
+        height: size,
+        scale: 2, // 2x for retina displays
+        backgroundColor: null, // Transparent background
+        useCORS: true,
+        allowTaint: true,
+      });
+
+      // Create download link
+      const link = document.createElement('a');
+      link.download = `${name.replace(/\s+/g, '_').toLowerCase()}.png`;
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    } catch (error) {
+      console.error('Error generating logo:', error);
+    } finally {
+      // Cleanup
+      root.unmount();
+      document.body.removeChild(tempContainer);
     }
-    ctx.closePath();
-    ctx.fill();
-
-    // Center glow
-    const centerGradient = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, size * 0.1);
-    centerGradient.addColorStop(0, '#60A5FA');
-    centerGradient.addColorStop(1, '#A855F7');
-    ctx.fillStyle = centerGradient;
-    ctx.beginPath();
-    ctx.arc(centerX, centerY, size * 0.05, 0, Math.PI * 2);
-    ctx.fill();
-
-    document.body.removeChild(tempDiv);
-
-    // Download
-    const link = document.createElement('a');
-    link.download = `${name.replace(/\s+/g, '_').toLowerCase()}.png`;
-    link.href = canvas.toDataURL();
-    link.click();
   };
 
   const groupedSizes = logoSizes.reduce((acc, item) => {
@@ -323,7 +301,7 @@ const LogoGenerator = () => {
                     </div>
                     
                     <button
-                      onClick={() => downloadLogo(logoSize.size, logoSize.name)}
+                      onClick={() => downloadLogo(logoSize.size, logoSize.name, logoSize.showText)}
                       className="flex items-center gap-1 px-3 py-1 bg-blue-600 text-white text-xs rounded-md hover:bg-blue-700 transition-colors"
                     >
                       <Download size={12} />
