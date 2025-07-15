@@ -24,7 +24,7 @@ const Hero = () => {
         }} transition={{
           duration: 0.8,
           ease: "easeOut"
-        }} className="font-honk mb-12 tracking-wide md:text-5xl font-light text-4xl md:text-left text-center leading-tight">
+        }} className="font-tomorrow mb-12 tracking-wide md:text-5xl font-light text-4xl md:text-left text-center leading-tight">
             <motion.span animate={{
             backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
           }} transition={{

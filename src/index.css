@@ -3,13 +3,15 @@
 .honk-font {
   font-family: "Honk", system-ui;
   font-optical-sizing: auto;
-  font-weight: 200;
+  font-weight: 400;
   font-style: normal;
   font-variation-settings:
-    "MORF" 5,
-    "SHLN" 20;
-  letter-spacing: 0.025em;
-  line-height: 1.6;
+    "MORF" 15,
+    "SHLN" 50;
+}
+
+.tomorrow-font {
+  font-family: "Tomorrow", system-ui;
 }
 
 @tailwind base;
@@ -86,9 +88,9 @@
   }
 
   body {
-    @apply bg-background text-foreground font-honk;
+    @apply bg-background text-foreground font-tomorrow;
     font-feature-settings: "rlig" 1, "calt" 1;
-    font-weight: 200;
+    font-weight: 300;
     letter-spacing: 0.025em;
     line-height: 1.7;
   }

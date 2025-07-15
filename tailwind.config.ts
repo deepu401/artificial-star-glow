@@ -18,10 +18,11 @@ export default {
 			}
 		},
 		extend: {
-			fontFamily: {
-				sans: ['Honk', 'system-ui', 'sans-serif'],
-				honk: ['Honk', 'system-ui', 'sans-serif'],
-			},
+		fontFamily: {
+			sans: ['Tomorrow', 'system-ui', 'sans-serif'],
+			tomorrow: ['Tomorrow', 'system-ui', 'sans-serif'],
+			honk: ['Honk', 'system-ui', 'sans-serif'],
+		},
 			colors: {
 				// Core backgrounds
 				background: 'hsl(var(--background))',
