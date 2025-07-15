@@ -62,7 +62,7 @@ const Hero = () => {
           duration: 0.8,
           delay: 0.3,
           ease: "easeOut"
-        }}>Transform your business with AI solutions that don't just automate - they illuminate new possibilities.</motion.p>
+        }}>Transform your business with AI solutions that don't just automate - they illuminate new possibilitiess.</motion.p>
           
           {/* CTA Button */}
           <motion.div className="flex flex-col sm:flex-row gap-4 justify-center items-center" initial={{
