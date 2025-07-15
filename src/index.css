@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
-.handjet-font {
-  font-family: "Handjet", sans-serif;
+.honk-font {
+  font-family: "Honk", system-ui;
   font-optical-sizing: auto;
-  font-weight: 300;
+  font-weight: 400;
   font-style: normal;
   font-variation-settings:
-    "ELGR" 1,
-    "ELSH" 2;
+    "MORF" 15,
+    "SHLN" 50;
 }
 
 @tailwind base;
@@ -84,7 +84,7 @@
   }
 
   body {
-    @apply bg-background text-foreground font-handjet;
+    @apply bg-background text-foreground font-honk;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
   
