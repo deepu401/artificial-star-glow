@@ -26,7 +26,47 @@ const Navigation = () => {
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <div className="flex items-center">
+          <div className="flex items-center gap-3">
+            <svg width="60" height="60" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" style={{stopColor:'#60a5fa', stopOpacity:0.8}} />
+                  <stop offset="50%" style={{stopColor:'#a855f7', stopOpacity:0.6}} />
+                  <stop offset="100%" style={{stopColor:'transparent', stopOpacity:0}} />
+                </radialGradient>
+                <linearGradient id="starGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style={{stopColor:'#60a5fa'}} />
+                  <stop offset="50%" style={{stopColor:'#a855f7'}} />
+                  <stop offset="100%" style={{stopColor:'#ec4899'}} />
+                </linearGradient>
+                <filter id="glow-filter">
+                  <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
+                  <feMerge> 
+                    <feMergeNode in="coloredBlur"/>
+                    <feMergeNode in="SourceGraphic"/>
+                  </feMerge>
+                </filter>
+              </defs>
+              <circle cx="30" cy="30" r="20" fill="url(#glow)">
+                <animate attributeName="r" values="17;22;17" dur="2s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.8;0.4;0.8" dur="2s" repeatCount="indefinite"/>
+              </circle>
+              <polygon points="30,10 36,25 50,25 39,34 43,48 30,40 17,48 21,34 10,25 24,25" fill="url(#starGradient)" filter="url(#glow-filter)">
+                <animateTransform attributeName="transform" type="rotate" values="0 30 30;360 30 30" dur="4s" repeatCount="indefinite"/>
+              </polygon>
+              <circle cx="17" cy="17" r="0.75" fill="#60a5fa">
+                <animate attributeName="opacity" values="0;1;0" dur="2s" repeatCount="indefinite"/>
+              </circle>
+              <circle cx="42" cy="22" r="0.75" fill="#60a5fa">
+                <animate attributeName="opacity" values="0;1;0" dur="2s" begin="0.5s" repeatCount="indefinite"/>
+              </circle>
+              <circle cx="22" cy="42" r="0.75" fill="#60a5fa">
+                <animate attributeName="opacity" values="0;1;0" dur="2s" begin="1s" repeatCount="indefinite"/>
+              </circle>
+              <circle cx="37" cy="37" r="0.75" fill="#60a5fa">
+                <animate attributeName="opacity" values="0;1;0" dur="2s" begin="1.5s" repeatCount="indefinite"/>
+              </circle>
+            </svg>
             <div className="logo-text flex items-center">
               <span className="transition-all duration-300 font-handjet text-purple-100 text-5xl font-medium text-left">
                 Artificial Star
