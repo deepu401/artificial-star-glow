@@ -188,6 +188,8 @@ const LogoGenerator = () => {
     tempContainer.style.width = `${size}px`;
     tempContainer.style.height = `${size}px`;
     tempContainer.style.backgroundColor = 'transparent';
+    tempContainer.style.transform = 'scale(1)';
+    tempContainer.style.transformOrigin = 'top left';
     document.body.appendChild(tempContainer);
 
     // Create React element and render it
@@ -203,24 +205,40 @@ const LogoGenerator = () => {
           compact={size < 64} 
         />
       );
-      setTimeout(resolve, 100); // Small delay to ensure rendering
+      setTimeout(resolve, 200); // Longer delay to ensure complete rendering
     });
 
     try {
-      // Capture with html2canvas at high resolution
+      // Capture with html2canvas at maximum resolution
       const canvas = await html2canvas(tempContainer, {
         width: size,
         height: size,
-        scale: 2, // 2x for retina displays
+        scale: 4, // 4x for ultra high resolution
         backgroundColor: null, // Transparent background
         useCORS: true,
         allowTaint: true,
+        imageTimeout: 0,
+        removeContainer: false,
+        foreignObjectRendering: true,
+        logging: false,
+        onclone: (clonedDoc) => {
+          // Ensure high quality rendering in cloned document
+          const style = clonedDoc.createElement('style');
+          style.textContent = `
+            * {
+              -webkit-font-smoothing: antialiased;
+              -moz-osx-font-smoothing: grayscale;
+              text-rendering: optimizeQuality;
+            }
+          `;
+          clonedDoc.head.appendChild(style);
+        }
       });
 
-      // Create download link
+      // Create download link with maximum quality PNG
       const link = document.createElement('a');
       link.download = `${name.replace(/\s+/g, '_').toLowerCase()}.png`;
-      link.href = canvas.toDataURL('image/png');
+      link.href = canvas.toDataURL('image/png', 1.0); // Maximum quality
       link.click();
     } catch (error) {
       console.error('Error generating logo:', error);
