@@ -326,9 +326,11 @@ const ArticlePage = () => {
               <p className="text-foreground-muted mb-6">
                 Let's discuss how our AI solutions can drive similar results for your organization.
               </p>
-              <Button variant="premium" size="lg">
-                Start Your AI Journey
-              </Button>
+              <Link to="/#contact">
+                <Button variant="premium" size="lg">
+                  Start Your AI Journey
+                </Button>
+              </Link>
             </div>
           </div>
         </div>

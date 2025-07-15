@@ -135,10 +135,12 @@ const BlogPage = () => {
                     {post.excerpt}
                   </p>
 
-                  <Button variant="glass" className="w-full group-hover:bg-primary/10 group-hover:border-primary/50" onClick={() => window.location.href = `/article/${post.slug}`}>
-                    Read Article
-                    <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
-                  </Button>
+                  <Link to={`/article/${post.slug}`}>
+                    <Button variant="glass" className="w-full group-hover:bg-primary/10 group-hover:border-primary/50">
+                      Read Article
+                      <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+                    </Button>
+                  </Link>
                 </div>
               </article>
             ))}

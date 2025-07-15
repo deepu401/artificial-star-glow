@@ -1,5 +1,6 @@
 import { Calendar, ArrowRight, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const Blog = () => {
   const blogPosts = [
@@ -96,10 +97,12 @@ const Blog = () => {
                   {post.excerpt}
                 </p>
 
-                  <Button variant="glass" className="w-full group-hover:bg-primary/10 group-hover:border-primary/50" onClick={() => window.location.href = `/article/${post.slug}`}>
+                <Link to={`/article/${post.slug}`}>
+                  <Button variant="glass" className="w-full group-hover:bg-primary/10 group-hover:border-primary/50">
                     Read More
                     <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
                   </Button>
+                </Link>
               </div>
             </article>
           ))}
@@ -107,10 +110,12 @@ const Blog = () => {
 
         {/* View all posts CTA */}
         <div className="text-center animate-fade-in-up" style={{animationDelay: '0.8s'}}>
-          <Button variant="premium" size="xl" onClick={() => window.location.href = '/blog'}>
-            View All Articles
-            <ArrowRight className="ml-2" />
-          </Button>
+          <Link to="/blog">
+            <Button variant="premium" size="xl">
+              View All Articles
+              <ArrowRight className="ml-2" />
+            </Button>
+          </Link>
         </div>
       </div>
     </section>
