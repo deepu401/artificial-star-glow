@@ -36,14 +36,14 @@ const Navigation = () => {
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <div className="flex items-center gap-3">
+          <Link to="/" className="flex items-center gap-3 hover:scale-105 transition-transform duration-300">
             <StarLogo size={40} animated={true} glowIntensity={0.9} rotationSpeed={1.5} />
             <div className="logo-text flex items-center">
               <span className="transition-all duration-300 font-tomorrow text-purple-100 text-4xl font-light text-left tracking-wide">
                 Artificial Star
               </span>
             </div>
-          </div>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">

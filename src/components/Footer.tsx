@@ -1,33 +1,35 @@
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const footerSections = [
     {
       title: "Services",
       links: [
-        { name: "Custom Chatbots", href: "#services" },
-        { name: "Voice Agents", href: "#services" },
-        { name: "Intelligent Automation", href: "#services" },
-        { name: "Website Design", href: "#services" },
+        { name: "Custom Chatbots", href: "/service/custom-chatbots" },
+        { name: "Voice Agents", href: "/service/voice-agents" },
+        { name: "Intelligent Automation", href: "/service/intelligent-automation" },
+        { name: "Website Design", href: "/service/website-design" },
+        { name: "Custom Solutions", href: "/service/custom-solutions" },
       ]
     },
     {
       title: "Company", 
       links: [
-        { name: "About", href: "#" },
-        { name: "Approach", href: "#approach" },
-        { name: "Blog", href: "#blog" },
-        { name: "Contact", href: "#contact" },
+        { name: "About", href: "/#approach" },
+        { name: "Approach", href: "/#approach" },
+        { name: "Blog", href: "/blog" },
+        { name: "Contact", href: "/contact" },
       ]
     },
     {
       title: "Resources",
       links: [
-        { name: "Case Studies", href: "#" },
-        { name: "AI Tools", href: "#" },
-        { name: "Consultation", href: "#contact" },
-        { name: "Support", href: "#" },
+        { name: "Case Studies", href: "/blog" },
+        { name: "AI Tools", href: "/blog" },
+        { name: "Consultation", href: "/contact" },
+        { name: "Support", href: "/contact" },
       ]
     },
     {
@@ -48,7 +50,7 @@ const Footer = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
           {/* Brand section */}
           <div className="lg:col-span-1">
-            <div className="flex items-center space-x-3 mb-6">
+            <Link to="/" className="flex items-center space-x-3 mb-6 hover:scale-105 transition-transform duration-300 w-fit">
               <img 
                 src="/lovable-uploads/67b95d87-503c-4cf7-a292-4ed2f14bf7e6.png" 
                 alt="Artificial Star"
@@ -57,13 +59,15 @@ const Footer = () => {
               <span className="font-tomorrow text-xl font-light text-foreground">
                 Artificial Star
               </span>
-            </div>
+            </Link>
             <p className="text-foreground-muted text-sm leading-relaxed mb-6">
               Illuminating the future with intelligent AI solutions that transform businesses and drive growth.
             </p>
-            <Button variant="premium" size="sm">
-              Start Your Journey
-              <ArrowRight className="ml-2 w-4 h-4" />
+            <Button variant="premium" size="sm" asChild>
+              <Link to="/ai-journey">
+                Start Your Journey
+                <ArrowRight className="ml-2 w-4 h-4" />
+              </Link>
             </Button>
           </div>
 
@@ -74,12 +78,21 @@ const Footer = () => {
               <ul className="space-y-3">
                 {section.links.map((link) => (
                   <li key={link.name}>
-                    <a 
-                      href={link.href}
-                      className="text-foreground-muted hover:text-foreground transition-colors duration-300 text-sm"
-                    >
-                      {link.name}
-                    </a>
+                    {link.href.startsWith('#') ? (
+                      <a 
+                        href={link.href}
+                        className="text-foreground-muted hover:text-foreground transition-colors duration-300 text-sm"
+                      >
+                        {link.name}
+                      </a>
+                    ) : (
+                      <Link 
+                        to={link.href}
+                        className="text-foreground-muted hover:text-foreground transition-colors duration-300 text-sm"
+                      >
+                        {link.name}
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -87,25 +100,6 @@ const Footer = () => {
           ))}
         </div>
 
-        {/* Newsletter signup */}
-        <div className="mt-16 pt-8 border-t border-border-subtle">
-          <div className="max-w-md">
-            <h3 className="font-semibold text-foreground mb-2">Stay Updated</h3>
-            <p className="text-foreground-muted text-sm mb-4">
-              Get the latest AI insights and updates delivered to your inbox.
-            </p>
-            <div className="flex gap-3">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 px-4 py-2 bg-background-card border border-border-subtle rounded-lg focus:outline-none focus:border-primary transition-colors duration-300 text-sm"
-              />
-              <Button variant="premium" size="sm">
-                Subscribe
-              </Button>
-            </div>
-          </div>
-        </div>
       </div>
 
       {/* Bottom bar */}
@@ -125,9 +119,9 @@ const Footer = () => {
               <a href="#" className="text-foreground-muted hover:text-foreground transition-colors duration-300">
                 Terms of Service
               </a>
-              <a href="#contact" className="text-foreground-muted hover:text-foreground transition-colors duration-300">
+              <Link to="/contact" className="text-foreground-muted hover:text-foreground transition-colors duration-300">
                 Contact
-              </a>
+              </Link>
             </div>
           </div>
         </div>
