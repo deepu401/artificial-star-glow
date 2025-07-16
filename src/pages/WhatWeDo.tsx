@@ -4,38 +4,12 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { 
-  Star, 
-  Zap, 
-  TrendingUp, 
-  Target, 
-  Rocket, 
-  Handshake, 
-  BarChart3,
-  Search,
-  Building,
-  Users,
-  Heart,
-  Stethoscope,
-  Home,
-  ShoppingCart,
-  Briefcase,
-  Factory,
-  CreditCard,
-  GraduationCap,
-  MapPin,
-  DollarSign,
-  Clock,
-  Award,
-  Smile,
-  Globe,
-  Bot,
-  Lightbulb
-} from "lucide-react";
-
+import { Star, Zap, TrendingUp, Target, Rocket, Handshake, BarChart3, Search, Building, Users, Heart, Stethoscope, Home, ShoppingCart, Briefcase, Factory, CreditCard, GraduationCap, MapPin, DollarSign, Clock, Award, Smile, Globe, Bot, Lightbulb } from "lucide-react";
 const WhatWeDo = () => {
   const containerVariants = {
-    hidden: { opacity: 0 },
+    hidden: {
+      opacity: 0
+    },
     visible: {
       opacity: 1,
       transition: {
@@ -43,9 +17,11 @@ const WhatWeDo = () => {
       }
     }
   };
-
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: {
+      opacity: 0,
+      y: 20
+    },
     visible: {
       opacity: 1,
       y: 0,
@@ -54,71 +30,64 @@ const WhatWeDo = () => {
       }
     }
   };
-
-  const industries = [
-    { name: "Healthcare", description: "Patient experience automation", icon: Stethoscope },
-    { name: "Real Estate", description: "Lead qualification & nurturing systems", icon: Home },
-    { name: "E-commerce", description: "Customer journey optimization", icon: ShoppingCart },
-    { name: "Professional Services", description: "Client onboarding automation", icon: Briefcase },
-    { name: "Manufacturing", description: "Operations optimization", icon: Factory },
-    { name: "Finance", description: "Risk assessment & compliance", icon: CreditCard },
-    { name: "Education", description: "Student engagement platforms", icon: GraduationCap },
-    { name: "Hospitality", description: "Guest experience enhancement", icon: MapPin }
-  ];
-
-  const successMetrics = [
-    {
-      category: "Revenue Impact",
-      icon: DollarSign,
-      items: [
-        "Increased lead generation and conversion",
-        "Cost reduction through automation", 
-        "New revenue streams enabled by AI"
-      ]
-    },
-    {
-      category: "Time Liberation",
-      icon: Clock,
-      items: [
-        "Hours saved on repetitive tasks",
-        "Faster decision-making processes",
-        "More time for strategic initiatives"
-      ]
-    },
-    {
-      category: "Competitive Advantage",
-      icon: Award,
-      items: [
-        "Capabilities competitors don't have",
-        "Market positioning as industry innovator",
-        "Future-ready business infrastructure"
-      ]
-    },
-    {
-      category: "Human Empowerment",
-      icon: Smile,
-      items: [
-        "Staff focusing on high-value work",
-        "Improved customer experiences",
-        "Reduced stress from manual processes"
-      ]
-    }
-  ];
-
-  return (
-    <div className="min-h-screen bg-background">
+  const industries = [{
+    name: "Healthcare",
+    description: "Patient experience automation",
+    icon: Stethoscope
+  }, {
+    name: "Real Estate",
+    description: "Lead qualification & nurturing systems",
+    icon: Home
+  }, {
+    name: "E-commerce",
+    description: "Customer journey optimization",
+    icon: ShoppingCart
+  }, {
+    name: "Professional Services",
+    description: "Client onboarding automation",
+    icon: Briefcase
+  }, {
+    name: "Manufacturing",
+    description: "Operations optimization",
+    icon: Factory
+  }, {
+    name: "Finance",
+    description: "Risk assessment & compliance",
+    icon: CreditCard
+  }, {
+    name: "Education",
+    description: "Student engagement platforms",
+    icon: GraduationCap
+  }, {
+    name: "Hospitality",
+    description: "Guest experience enhancement",
+    icon: MapPin
+  }];
+  const successMetrics = [{
+    category: "Revenue Impact",
+    icon: DollarSign,
+    items: ["Increased lead generation and conversion", "Cost reduction through automation", "New revenue streams enabled by AI"]
+  }, {
+    category: "Time Liberation",
+    icon: Clock,
+    items: ["Hours saved on repetitive tasks", "Faster decision-making processes", "More time for strategic initiatives"]
+  }, {
+    category: "Competitive Advantage",
+    icon: Award,
+    items: ["Capabilities competitors don't have", "Market positioning as industry innovator", "Future-ready business infrastructure"]
+  }, {
+    category: "Human Empowerment",
+    icon: Smile,
+    items: ["Staff focusing on high-value work", "Improved customer experiences", "Reduced stress from manual processes"]
+  }];
+  return <div className="min-h-screen bg-background">
       <Navigation />
       
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center bg-gradient-hero overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--primary)_0%,_transparent_50%)] opacity-10"></div>
         
-        <motion.div 
-          className="container mx-auto px-6 text-center relative z-10"
-          initial="hidden"
-          animate="visible"
-          variants={containerVariants}
-        >
+        <motion.div className="container mx-auto px-6 text-center relative z-10" initial="hidden" animate="visible" variants={containerVariants}>
           <motion.div variants={itemVariants} className="mb-8">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
               <Star className="w-4 h-4 text-primary" />
@@ -126,20 +95,12 @@ const WhatWeDo = () => {
             </div>
           </motion.div>
 
-          <motion.h1 
-            variants={itemVariants}
-            className="text-5xl md:text-7xl font-bold text-foreground mb-6 leading-tight"
-          >
+          <motion.h1 variants={itemVariants} className="text-5xl md:text-7xl font-bold text-foreground mb-6 leading-tight">
             We Turn AI Complexity Into{" "}
-            <span className="bg-gradient-primary bg-clip-text text-transparent">
-              Business Simplicity
-            </span>
+            
           </motion.h1>
 
-          <motion.p 
-            variants={itemVariants}
-            className="text-xl md:text-2xl text-foreground-muted mb-12 max-w-4xl mx-auto leading-relaxed"
-          >
+          <motion.p variants={itemVariants} className="text-xl md:text-2xl text-foreground-muted mb-12 max-w-4xl mx-auto leading-relaxed">
             While others build AI tools, we architect business transformations. We're the bridge between cutting-edge AI technology and real-world business results.
           </motion.p>
 
@@ -154,13 +115,9 @@ const WhatWeDo = () => {
       {/* Mission Section */}
       <section className="py-24 bg-background-secondary">
         <div className="container mx-auto px-6">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={containerVariants}
-            className="text-center mb-16"
-          >
+          <motion.div initial="hidden" whileInView="visible" viewport={{
+          once: true
+        }} variants={containerVariants} className="text-center mb-16">
             <motion.h2 variants={itemVariants} className="text-4xl md:text-5xl font-bold text-foreground mb-8">
               Illuminating New Possibilities
             </motion.h2>
@@ -169,13 +126,9 @@ const WhatWeDo = () => {
             </motion.p>
           </motion.div>
 
-          <motion.div 
-            className="grid md:grid-cols-3 gap-8"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={containerVariants}
-          >
+          <motion.div className="grid md:grid-cols-3 gap-8" initial="hidden" whileInView="visible" viewport={{
+          once: true
+        }} variants={containerVariants}>
             <motion.div variants={itemVariants}>
               <Card className="bg-gradient-card border-border-subtle h-full hover:shadow-glow transition-all duration-300">
                 <CardContent className="p-8 text-center">
@@ -224,25 +177,17 @@ const WhatWeDo = () => {
       {/* What Makes Us Different */}
       <section className="py-24 bg-background">
         <div className="container mx-auto px-6">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={containerVariants}
-            className="text-center mb-16"
-          >
+          <motion.div initial="hidden" whileInView="visible" viewport={{
+          once: true
+        }} variants={containerVariants} className="text-center mb-16">
             <motion.h2 variants={itemVariants} className="text-4xl md:text-5xl font-bold text-foreground mb-8">
               The Artificial Star Difference
             </motion.h2>
           </motion.div>
 
-          <motion.div 
-            className="grid md:grid-cols-2 gap-12"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={containerVariants}
-          >
+          <motion.div className="grid md:grid-cols-2 gap-12" initial="hidden" whileInView="visible" viewport={{
+          once: true
+        }} variants={containerVariants}>
             <motion.div variants={itemVariants} className="space-y-6">
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0">
@@ -301,13 +246,9 @@ const WhatWeDo = () => {
       {/* Industries Section */}
       <section className="py-24 bg-background-secondary">
         <div className="container mx-auto px-6">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={containerVariants}
-            className="text-center mb-16"
-          >
+          <motion.div initial="hidden" whileInView="visible" viewport={{
+          once: true
+        }} variants={containerVariants} className="text-center mb-16">
             <motion.h2 variants={itemVariants} className="text-4xl md:text-5xl font-bold text-foreground mb-4">
               Transforming Businesses Across Industries
             </motion.h2>
@@ -316,17 +257,12 @@ const WhatWeDo = () => {
             </motion.p>
           </motion.div>
 
-          <motion.div 
-            className="grid md:grid-cols-4 gap-6 mb-12"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={containerVariants}
-          >
+          <motion.div className="grid md:grid-cols-4 gap-6 mb-12" initial="hidden" whileInView="visible" viewport={{
+          once: true
+        }} variants={containerVariants}>
             {industries.map((industry, index) => {
-              const Icon = industry.icon;
-              return (
-                <motion.div key={index} variants={itemVariants}>
+            const Icon = industry.icon;
+            return <motion.div key={index} variants={itemVariants}>
                   <Card className="bg-gradient-card border-border-subtle h-full hover:shadow-glow transition-all duration-300 hover:scale-105">
                     <CardContent className="p-6 text-center">
                       <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -336,18 +272,13 @@ const WhatWeDo = () => {
                       <p className="text-sm text-foreground-muted">{industry.description}</p>
                     </CardContent>
                   </Card>
-                </motion.div>
-              );
-            })}
+                </motion.div>;
+          })}
           </motion.div>
 
-          <motion.div 
-            className="text-center"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={itemVariants}
-          >
+          <motion.div className="text-center" initial="hidden" whileInView="visible" viewport={{
+          once: true
+        }} variants={itemVariants}>
             <p className="text-lg text-foreground-muted">
               Don't see your industry? We adapt our expertise to any business model.
             </p>
@@ -358,25 +289,17 @@ const WhatWeDo = () => {
       {/* Strategic Approach */}
       <section className="py-24 bg-background">
         <div className="container mx-auto px-6">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={containerVariants}
-            className="text-center mb-16"
-          >
+          <motion.div initial="hidden" whileInView="visible" viewport={{
+          once: true
+        }} variants={containerVariants} className="text-center mb-16">
             <motion.h2 variants={itemVariants} className="text-4xl md:text-5xl font-bold text-foreground mb-8">
               How We Think About AI Transformation
             </motion.h2>
           </motion.div>
 
-          <motion.div 
-            className="grid lg:grid-cols-3 gap-12"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={containerVariants}
-          >
+          <motion.div className="grid lg:grid-cols-3 gap-12" initial="hidden" whileInView="visible" viewport={{
+          once: true
+        }} variants={containerVariants}>
             <motion.div variants={itemVariants}>
               <Card className="bg-gradient-card border-border-subtle h-full">
                 <CardContent className="p-8">
@@ -431,29 +354,20 @@ const WhatWeDo = () => {
       {/* Success Philosophy */}
       <section className="py-24 bg-background-secondary">
         <div className="container mx-auto px-6">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={containerVariants}
-            className="text-center mb-16"
-          >
+          <motion.div initial="hidden" whileInView="visible" viewport={{
+          once: true
+        }} variants={containerVariants} className="text-center mb-16">
             <motion.h2 variants={itemVariants} className="text-4xl md:text-5xl font-bold text-foreground mb-8">
               Our Definition of Success
             </motion.h2>
           </motion.div>
 
-          <motion.div 
-            className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={containerVariants}
-          >
+          <motion.div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8" initial="hidden" whileInView="visible" viewport={{
+          once: true
+        }} variants={containerVariants}>
             {successMetrics.map((metric, index) => {
-              const Icon = metric.icon;
-              return (
-                <motion.div key={index} variants={itemVariants}>
+            const Icon = metric.icon;
+            return <motion.div key={index} variants={itemVariants}>
                   <Card className="bg-gradient-card border-border-subtle h-full">
                     <CardContent className="p-6">
                       <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center mb-4">
@@ -461,18 +375,15 @@ const WhatWeDo = () => {
                       </div>
                       <h3 className="text-xl font-bold text-foreground mb-4">{metric.category}</h3>
                       <ul className="space-y-2">
-                        {metric.items.map((item, itemIndex) => (
-                          <li key={itemIndex} className="text-sm text-foreground-muted flex items-start gap-2">
+                        {metric.items.map((item, itemIndex) => <li key={itemIndex} className="text-sm text-foreground-muted flex items-start gap-2">
                             <div className="w-1 h-1 bg-primary rounded-full mt-2 flex-shrink-0"></div>
                             {item}
-                          </li>
-                        ))}
+                          </li>)}
                       </ul>
                     </CardContent>
                   </Card>
-                </motion.div>
-              );
-            })}
+                </motion.div>;
+          })}
           </motion.div>
         </div>
       </section>
@@ -480,13 +391,9 @@ const WhatWeDo = () => {
       {/* The Bigger Picture */}
       <section className="py-24 bg-background">
         <div className="container mx-auto px-6">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={containerVariants}
-            className="text-center mb-16"
-          >
+          <motion.div initial="hidden" whileInView="visible" viewport={{
+          once: true
+        }} variants={containerVariants} className="text-center mb-16">
             <motion.h2 variants={itemVariants} className="text-4xl md:text-5xl font-bold text-foreground mb-8">
               Beyond Individual Projects
             </motion.h2>
@@ -495,13 +402,9 @@ const WhatWeDo = () => {
             </motion.p>
           </motion.div>
 
-          <motion.div 
-            className="grid lg:grid-cols-3 gap-8"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={containerVariants}
-          >
+          <motion.div className="grid lg:grid-cols-3 gap-8" initial="hidden" whileInView="visible" viewport={{
+          once: true
+        }} variants={containerVariants}>
             <motion.div variants={itemVariants}>
               <Card className="bg-gradient-card border-border-subtle h-full">
                 <CardContent className="p-8 text-center">
@@ -550,20 +453,14 @@ const WhatWeDo = () => {
       {/* CTA Section */}
       <section className="py-24 bg-gradient-hero">
         <div className="container mx-auto px-6 text-center">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={containerVariants}
-          >
+          <motion.div initial="hidden" whileInView="visible" viewport={{
+          once: true
+        }} variants={containerVariants}>
             <motion.h2 variants={itemVariants} className="text-4xl md:text-5xl font-bold text-foreground mb-8">
               Your AI Transformation Starts With a Conversation
             </motion.h2>
             
-            <motion.div 
-              className="grid md:grid-cols-3 gap-8 mt-16"
-              variants={containerVariants}
-            >
+            <motion.div className="grid md:grid-cols-3 gap-8 mt-16" variants={containerVariants}>
               <motion.div variants={itemVariants} className="text-center">
                 <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-6">
                   <Target className="w-8 h-8 text-primary" />
@@ -582,7 +479,7 @@ const WhatWeDo = () => {
                 <h3 className="text-2xl font-bold text-foreground mb-4">Leadership Discussion</h3>
                 <p className="text-foreground-muted mb-6">Speak with our AI strategy team</p>
                 <Button variant="premium" size="lg" asChild>
-                  <Link to="/ai-journey">Schedule Strategic Call</Link>
+                  <Link to="#contact">Schedule Strategic Call</Link>
                 </Button>
               </motion.div>
 
@@ -602,8 +499,6 @@ const WhatWeDo = () => {
       </section>
 
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default WhatWeDo;
