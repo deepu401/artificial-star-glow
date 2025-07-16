@@ -5,9 +5,9 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Star } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
+import StarLogo from "./StarLogo";
 
 interface FormData {
   firstName: string;
@@ -86,9 +86,13 @@ const AIJourneyForm = () => {
       {/* Header */}
       <div className="relative z-10 container mx-auto px-6 py-8">
         <div className="flex items-center justify-between mb-8">
-          <Link to="/" className="flex items-center space-x-2">
-            <Star className="w-8 h-8 text-primary" />
-            <span className="text-xl font-bold text-foreground">Artificial Star</span>
+          <Link to="/" className="flex items-center gap-3 hover:scale-105 transition-transform duration-300">
+            <StarLogo size={40} animated={true} glowIntensity={0.9} rotationSpeed={1.5} />
+            <div className="logo-text flex items-center">
+              <span className="transition-all duration-300 font-tomorrow text-4xl text-left tracking-wide text-purple-600 font-medium">
+                Artificial Star
+              </span>
+            </div>
           </Link>
           <Button variant="ghost" asChild>
             <Link to="/">← Back to Home</Link>
