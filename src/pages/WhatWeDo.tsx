@@ -97,7 +97,9 @@ const WhatWeDo = () => {
 
           <motion.h1 variants={itemVariants} className="text-5xl md:text-7xl font-bold text-foreground mb-6 leading-tight">
             We Turn AI Complexity Into{" "}
-            
+            <span className="bg-gradient-primary bg-clip-text text-transparent">
+              Business Simplicity
+            </span>
           </motion.h1>
 
           <motion.p variants={itemVariants} className="text-xl md:text-2xl text-foreground-muted mb-12 max-w-4xl mx-auto leading-relaxed">
