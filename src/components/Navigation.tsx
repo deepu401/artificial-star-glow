@@ -10,6 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import StarLogo from "./StarLogo";
+import { ThemeToggle } from "./ThemeToggle";
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -29,6 +30,7 @@ const Navigation = () => {
   ];
 
   const navItems = [
+    { name: "What We Do", href: "/what-we-do" },
     { name: "Blog", href: "/blog" },
     { name: "Contact", href: "#contact" }
   ];
@@ -86,6 +88,8 @@ const Navigation = () => {
                 </Link>
               )
             ))}
+            
+            <ThemeToggle />
             
             <Button variant="premium" size="lg" asChild>
               <Link to="/ai-journey">Start Your AI Journey</Link>

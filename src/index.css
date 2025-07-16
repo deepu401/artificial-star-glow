@@ -80,6 +80,50 @@
     --input: hsl(var(--border));
     --ring: hsl(var(--primary));
   }
+
+  .light {
+    /* Core Light Theme Colors */
+    --background: 0 0% 100%;             /* #ffffff */
+    --background-secondary: 0 0% 98%;    /* #fafafa */
+    --background-card: 0 0% 96%;         /* #f5f5f5 */
+    --background-elevated: 0 0% 90%;     /* #e5e5e5 */
+    
+    /* Text Colors */
+    --foreground: 0 0% 4%;               /* #0a0a0a */
+    --foreground-muted: 0 0% 29%;        /* #4a4a4a */
+    --foreground-subtle: 0 0% 55%;       /* #8c8c8c */
+    
+    /* Borders & Radius (lighter in light mode) */
+    --border: 0 0% 80%;
+    --border-subtle: 0 0% 86%;
+    
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(230 80% 60% / 0.05), hsl(270 80% 60% / 0.05));
+    --gradient-card: linear-gradient(135deg, hsl(0 0% 96% / 0.8), hsl(0 0% 92% / 0.8));
+    
+    /* Shadows & Effects (adjusted for light mode) */
+    --shadow-sm: 0 1px 2px 0 hsl(0 0% 0% / 0.05);
+    --shadow-md: 0 4px 6px -1px hsl(0 0% 0% / 0.1), 0 2px 4px -1px hsl(0 0% 0% / 0.06);
+    --shadow-lg: 0 10px 15px -3px hsl(0 0% 0% / 0.1), 0 4px 6px -2px hsl(0 0% 0% / 0.05);
+    --shadow-glow: 0 0 40px hsl(230 80% 60% / 0.15);
+    --shadow-glow-purple: 0 0 40px hsl(270 80% 60% / 0.15);
+    
+    /* Component-specific colors */
+    --card: hsl(var(--background-card));
+    --card-foreground: hsl(var(--foreground));
+    --popover: hsl(var(--background-card));
+    --popover-foreground: hsl(var(--foreground));
+    --secondary: hsl(var(--background-elevated));
+    --secondary-foreground: hsl(var(--foreground));
+    --muted: hsl(var(--background-card));
+    --muted-foreground: hsl(var(--foreground-muted));
+    --accent-color: hsl(var(--primary));
+    --accent-foreground: hsl(var(--foreground));
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: hsl(var(--background));
+    --input: hsl(var(--border));
+    --ring: hsl(var(--primary));
+  }
 }
 
 @layer base {
