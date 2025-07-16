@@ -52,7 +52,7 @@ const Navigation = () => {
                 Services
                 <ChevronDown size={16} />
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-56 bg-background/95 backdrop-blur-xl border border-border-subtle">
+              <DropdownMenuContent className="w-56 bg-background/95 backdrop-blur-xl border border-border-subtle z-50">
                 {services.map(service => {
                   const Icon = service.icon;
                   return (
@@ -102,8 +102,8 @@ const Navigation = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden mt-6 pb-6 border-t border-border-subtle animate-fade-in">
-            <div className="flex flex-col space-y-4 pt-6">
+          <div className="md:hidden mt-6 pb-6 border-t border-border-subtle animate-fade-in bg-background/95 backdrop-blur-xl rounded-lg p-4">
+            <div className="flex flex-col space-y-4 pt-2">
               <div className="mb-4">
                 <h4 className="text-foreground font-semibold mb-3">Services</h4>
                 <div className="flex flex-col space-y-2 pl-4">
