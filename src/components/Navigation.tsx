@@ -30,7 +30,7 @@ const Navigation = () => {
 
   const navItems = [
     { name: "Blog", href: "/blog" },
-    { name: "Contact", href: "/contact" }
+    { name: "Contact", href: "#contact" }
   ];
   return <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${isScrolled ? "bg-background/80 backdrop-blur-xl border-b border-border-subtle" : "bg-transparent"}`}>
       <div className="container mx-auto px-6 py-4">
@@ -68,13 +68,23 @@ const Navigation = () => {
             </DropdownMenu>
             
             {navItems.map(item => (
-              <Link 
-                key={item.name} 
-                to={item.href} 
-                className="text-foreground-muted hover:text-foreground transition-colors duration-300 font-medium hover:scale-105 transform"
-              >
-                {item.name}
-              </Link>
+              item.href.startsWith('#') ? (
+                <a 
+                  key={item.name} 
+                  href={item.href} 
+                  className="text-foreground-muted hover:text-foreground transition-colors duration-300 font-medium hover:scale-105 transform"
+                >
+                  {item.name}
+                </a>
+              ) : (
+                <Link 
+                  key={item.name} 
+                  to={item.href} 
+                  className="text-foreground-muted hover:text-foreground transition-colors duration-300 font-medium hover:scale-105 transform"
+                >
+                  {item.name}
+                </Link>
+              )
             ))}
             
             <Button variant="premium" size="lg" asChild>
@@ -115,14 +125,25 @@ const Navigation = () => {
               </div>
               
               {navItems.map(item => (
-                <Link 
-                  key={item.name} 
-                  to={item.href} 
-                  className="text-foreground-muted hover:text-foreground transition-colors duration-300 font-medium py-2" 
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {item.name}
-                </Link>
+                item.href.startsWith('#') ? (
+                  <a 
+                    key={item.name} 
+                    href={item.href} 
+                    className="text-foreground-muted hover:text-foreground transition-colors duration-300 font-medium py-2" 
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {item.name}
+                  </a>
+                ) : (
+                  <Link 
+                    key={item.name} 
+                    to={item.href} 
+                    className="text-foreground-muted hover:text-foreground transition-colors duration-300 font-medium py-2" 
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {item.name}
+                  </Link>
+                )
               ))}
               
               <Button variant="premium" size="lg" className="mt-4" asChild>

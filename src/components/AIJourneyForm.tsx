@@ -13,11 +13,13 @@ import { useToast } from "@/hooks/use-toast";
 
 interface FormData {
   // Step 1 - Business Overview
-  fullName: string;
+  firstName: string;
+  lastName: string;
+  entityType: string;
   companyName: string;
-  industry: string;
-  companySize: string;
-  userRole: string;
+  servicesInterested: string[];
+  budget: string;
+  initialMessage: string;
   
   // Step 2 - Current Challenges
   challenges: string[];
@@ -28,7 +30,6 @@ interface FormData {
   
   // Step 4 - Project Details
   timeline: string;
-  budget: string;
   findUs: string;
   
   // Step 5 - Vision & Contact
@@ -48,16 +49,17 @@ interface FormData {
 const AIJourneyForm = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState<FormData>({
-    fullName: "",
+    firstName: "",
+    lastName: "",
+    entityType: "",
     companyName: "",
-    industry: "",
-    companySize: "",
-    userRole: "",
+    servicesInterested: [],
+    budget: "",
+    initialMessage: "",
     challenges: [],
     biggestPainPoint: "",
     aiSolutions: [],
     timeline: "",
-    budget: "",
     findUs: "",
     visionDescription: "",
     requirements: "",
@@ -128,13 +130,15 @@ const AIJourneyForm = () => {
   const isStepValid = () => {
     switch (currentStep) {
       case 1:
-        return formData.fullName && formData.companyName && formData.industry && formData.companySize && formData.userRole;
+        return formData.firstName && formData.lastName && formData.entityType && 
+               (formData.entityType === 'individual' || formData.companyName) &&
+               formData.servicesInterested.length > 0 && formData.budget && formData.initialMessage;
       case 2:
         return formData.challenges.length > 0;
       case 3:
         return formData.aiSolutions.length > 0;
       case 4:
-        return formData.timeline && formData.budget && formData.findUs;
+        return formData.timeline && formData.findUs;
       case 5:
         return formData.visionDescription && formData.email;
       default:
@@ -298,17 +302,51 @@ const AIJourneyForm = () => {
 
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <Label htmlFor="fullName">Full Name *</Label>
+                    <Label htmlFor="firstName">First Name *</Label>
                     <Input
-                      id="fullName"
+                      id="firstName"
                       type="text"
-                      placeholder="Enter your full name"
-                      value={formData.fullName}
-                      onChange={(e) => handleInputChange("fullName", e.target.value)}
-                      className="floating-label"
+                      placeholder="Enter your first name"
+                      value={formData.firstName}
+                      onChange={(e) => handleInputChange("firstName", e.target.value)}
                     />
                   </div>
 
+                  <div className="space-y-2">
+                    <Label htmlFor="lastName">Last Name *</Label>
+                    <Input
+                      id="lastName"
+                      type="text"
+                      placeholder="Enter your last name"
+                      value={formData.lastName}
+                      onChange={(e) => handleInputChange("lastName", e.target.value)}
+                    />
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <Label>Are you representing a company or are you an individual? *</Label>
+                  <RadioGroup value={formData.entityType} onValueChange={(value) => handleInputChange("entityType", value)}>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="flex items-center space-x-2 p-4 border border-border-subtle rounded-lg hover:border-primary/50 transition-colors">
+                        <RadioGroupItem value="company" id="company" />
+                        <Label htmlFor="company" className="flex-1 cursor-pointer">
+                          <div className="font-medium">Company</div>
+                          <div className="text-sm text-foreground-muted">Representing a business</div>
+                        </Label>
+                      </div>
+                      <div className="flex items-center space-x-2 p-4 border border-border-subtle rounded-lg hover:border-primary/50 transition-colors">
+                        <RadioGroupItem value="individual" id="individual" />
+                        <Label htmlFor="individual" className="flex-1 cursor-pointer">
+                          <div className="font-medium">Individual</div>
+                          <div className="text-sm text-foreground-muted">Personal project</div>
+                        </Label>
+                      </div>
+                    </div>
+                  </RadioGroup>
+                </div>
+
+                {formData.entityType === 'company' && (
                   <div className="space-y-2">
                     <Label htmlFor="companyName">Company Name *</Label>
                     <Input
@@ -319,57 +357,60 @@ const AIJourneyForm = () => {
                       onChange={(e) => handleInputChange("companyName", e.target.value)}
                     />
                   </div>
+                )}
 
-                  <div className="space-y-2">
-                    <Label htmlFor="industry">Industry *</Label>
-                    <Select value={formData.industry} onValueChange={(value) => handleInputChange("industry", value)}>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select your industry" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {industries.map((industry) => (
-                          <SelectItem key={industry} value={industry}>{industry}</SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="userRole">Your Role *</Label>
-                    <Select value={formData.userRole} onValueChange={(value) => handleInputChange("userRole", value)}>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select your role" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {roles.map((role) => (
-                          <SelectItem key={role} value={role}>{role}</SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
+                <div className="space-y-4">
+                  <Label>What services are you interested in? * (Select all that apply)</Label>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    {[
+                      { id: "chatbot", label: "Smart Chatbot System", desc: "24/7 customer support automation" },
+                      { id: "voice", label: "Voice AI Agent", desc: "Intelligent phone call handling" },
+                      { id: "automation", label: "Intelligent Automation", desc: "Workflow optimization" },
+                      { id: "website", label: "AI-Powered Website", desc: "Conversion-optimized design" },
+                      { id: "custom", label: "Custom AI Solution", desc: "Tailored to your needs" }
+                    ].map((service) => (
+                      <div key={service.id} className="flex items-start space-x-3 p-4 border border-border-subtle rounded-lg hover:border-primary/50 transition-colors">
+                        <Checkbox
+                          id={service.id}
+                          checked={formData.servicesInterested.includes(service.id)}
+                          onCheckedChange={(checked) => handleArrayChange("servicesInterested", service.id, checked as boolean)}
+                        />
+                        <Label htmlFor={service.id} className="flex-1 cursor-pointer">
+                          <div className="font-medium">{service.label}</div>
+                          <div className="text-sm text-foreground-muted">{service.desc}</div>
+                        </Label>
+                      </div>
+                    ))}
                   </div>
                 </div>
 
-                <div className="space-y-4">
-                  <Label>Company Size *</Label>
-                  <RadioGroup value={formData.companySize} onValueChange={(value) => handleInputChange("companySize", value)}>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                      {[
-                        { value: "solo", label: "Solo Entrepreneur", desc: "1" },
-                        { value: "small", label: "Small Team", desc: "2-10" },
-                        { value: "growing", label: "Growing Business", desc: "11-50" },
-                        { value: "medium", label: "Medium Company", desc: "51-200" },
-                        { value: "large", label: "Large Enterprise", desc: "200+" }
-                      ].map((size) => (
-                        <div key={size.value} className="flex items-center space-x-2 p-4 border border-border-subtle rounded-lg hover:border-primary/50 transition-colors">
-                          <RadioGroupItem value={size.value} id={size.value} />
-                          <Label htmlFor={size.value} className="flex-1 cursor-pointer">
-                            <div className="font-medium">{size.label}</div>
-                            <div className="text-sm text-foreground-muted">({size.desc})</div>
-                          </Label>
-                        </div>
-                      ))}
-                    </div>
-                  </RadioGroup>
+                <div className="space-y-2">
+                  <Label htmlFor="budget">What's your budget range? *</Label>
+                  <Select value={formData.budget} onValueChange={(value) => handleInputChange("budget", value)}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select your budget range" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="under5k">Under $5,000</SelectItem>
+                      <SelectItem value="5-15k">$5,000 - $15,000</SelectItem>
+                      <SelectItem value="15-30k">$15,000 - $30,000</SelectItem>
+                      <SelectItem value="30-50k">$30,000 - $50,000</SelectItem>
+                      <SelectItem value="50-100k">$50,000 - $100,000</SelectItem>
+                      <SelectItem value="100k+">$100,000+</SelectItem>
+                      <SelectItem value="help">Help me determine the right budget</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="initialMessage">Tell us about your project *</Label>
+                  <Textarea
+                    id="initialMessage"
+                    placeholder="Describe what you're looking to achieve with AI..."
+                    value={formData.initialMessage}
+                    onChange={(e) => handleInputChange("initialMessage", e.target.value)}
+                    rows={4}
+                  />
                 </div>
 
                 {/* Custom Query Option */}
@@ -563,23 +604,6 @@ const AIJourneyForm = () => {
                     </RadioGroup>
                   </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="budget">What's your investment range? *</Label>
-                    <Select value={formData.budget} onValueChange={(value) => handleInputChange("budget", value)}>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select your budget range" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="under5k">Under $5,000 (Basic automation/chatbot)</SelectItem>
-                        <SelectItem value="5-15k">$5,000 - $15,000 (Professional chatbot + basic automation)</SelectItem>
-                        <SelectItem value="15-30k">$15,000 - $30,000 (Advanced AI system + integrations)</SelectItem>
-                        <SelectItem value="30-50k">$30,000 - $50,000 (Comprehensive AI transformation)</SelectItem>
-                        <SelectItem value="50-100k">$50,000 - $100,000 (Enterprise-level AI solutions)</SelectItem>
-                        <SelectItem value="100k+">$100,000+ (Custom AI development)</SelectItem>
-                        <SelectItem value="help">Help me determine the right budget</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
 
                   <div className="space-y-2">
                     <Label htmlFor="findUs">How did you find us? *</Label>

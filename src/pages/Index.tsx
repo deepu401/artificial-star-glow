@@ -5,6 +5,7 @@ import Services from "@/components/Services";
 import Approach from "@/components/Approach";
 import Blog from "@/components/Blog";
 import Contact from "@/components/Contact";
+import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
 
 const Index = () => {
@@ -17,6 +18,7 @@ const Index = () => {
       <Approach />
       <Blog />
       <Contact />
+      <ContactForm />
       <Footer />
     </div>
   );
