@@ -94,11 +94,11 @@ const Hero = () => {
           }} whileTap={{
             scale: 0.95
           }}>
-              <Button variant="glass" size="xl" className="group" onClick={() => document.getElementById('services')?.scrollIntoView({
-              behavior: 'smooth'
-            })}>
-                <Sparkles className="mr-2 group-hover:rotate-12 transition-transform duration-300" />
-                Explore Services
+              <Button variant="glass" size="xl" className="group" asChild>
+                <Link to="/services">
+                  <Sparkles className="mr-2 group-hover:rotate-12 transition-transform duration-300" />
+                  Explore Services
+                </Link>
               </Button>
             </motion.div>
           </motion.div>
