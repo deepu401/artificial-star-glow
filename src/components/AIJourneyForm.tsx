@@ -205,7 +205,6 @@ const AIJourneyForm = () => {
                 <Input
                   id="budget"
                   type="text"
-                  placeholder="e.g., $5,000 - $15,000 or Help me determine"
                   value={formData.budget}
                   onChange={(e) => handleInputChange("budget", e.target.value)}
                 />

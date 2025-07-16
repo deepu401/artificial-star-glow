@@ -1,6 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import StarLogo from "./StarLogo";
 
 const Footer = () => {
   const footerSections = [
@@ -51,11 +52,7 @@ const Footer = () => {
           {/* Brand section */}
           <div className="lg:col-span-1">
             <Link to="/" className="flex items-center space-x-3 mb-6 hover:scale-105 transition-transform duration-300 w-fit">
-              <img 
-                src="/lovable-uploads/67b95d87-503c-4cf7-a292-4ed2f14bf7e6.png" 
-                alt="Artificial Star"
-                className="h-8 w-auto"
-              />
+              <StarLogo size={32} animated={true} glowIntensity={0.8} rotationSpeed={1.5} />
               <span className="font-tomorrow text-xl font-light text-foreground">
                 Artificial Star
               </span>
