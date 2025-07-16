@@ -33,7 +33,7 @@ const Contact = () => {
           <div className="max-w-4xl mx-auto text-center">
             {/* Send us a message - clickable */}
             <div className="animate-fade-in-up" style={{animationDelay: '0.3s'}}>
-              <Link to="/contact" className="group block">
+              <a href="mailto:artificialstar1@gmail.com" className="group block">
                 <div className="bg-gradient-card backdrop-blur-sm rounded-xl p-8 border border-border-subtle hover:border-primary/50 transition-all duration-300 group-hover:scale-105">
                   <div className="flex items-center justify-center gap-3 mb-4">
                     <Send className="w-8 h-8 text-primary group-hover:text-accent transition-colors duration-300" />
@@ -45,7 +45,7 @@ const Contact = () => {
                     Click here to share your project details and get started
                   </p>
                 </div>
-              </Link>
+              </a>
             </div>
 
             {/* Response time and availability */}

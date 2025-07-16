@@ -2,6 +2,7 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import StarLogo from "./StarLogo";
+import { Instagram, Twitter, Linkedin, Facebook, MessageCircle } from "lucide-react";
 
 const Footer = () => {
   const footerSections = [
@@ -60,6 +61,26 @@ const Footer = () => {
             <p className="text-foreground-muted text-sm leading-relaxed mb-6">
               Illuminating the future with intelligent AI solutions that transform businesses and drive growth.
             </p>
+            
+            {/* Social Media Icons */}
+            <div className="flex items-center space-x-4 mb-6">
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="p-2 bg-background-secondary rounded-full hover:bg-primary/10 transition-all duration-300 group">
+                <Instagram className="w-5 h-5 text-foreground-muted group-hover:text-primary transition-colors duration-300" />
+              </a>
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="p-2 bg-background-secondary rounded-full hover:bg-primary/10 transition-all duration-300 group">
+                <Twitter className="w-5 h-5 text-foreground-muted group-hover:text-primary transition-colors duration-300" />
+              </a>
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="p-2 bg-background-secondary rounded-full hover:bg-primary/10 transition-all duration-300 group">
+                <Linkedin className="w-5 h-5 text-foreground-muted group-hover:text-primary transition-colors duration-300" />
+              </a>
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="p-2 bg-background-secondary rounded-full hover:bg-primary/10 transition-all duration-300 group">
+                <Facebook className="w-5 h-5 text-foreground-muted group-hover:text-primary transition-colors duration-300" />
+              </a>
+              <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer" className="p-2 bg-background-secondary rounded-full hover:bg-primary/10 transition-all duration-300 group">
+                <MessageCircle className="w-5 h-5 text-foreground-muted group-hover:text-primary transition-colors duration-300" />
+              </a>
+            </div>
+            
             <Button variant="premium" size="sm" asChild>
               <Link to="/ai-journey">
                 Start Your Journey
