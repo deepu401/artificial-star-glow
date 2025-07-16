@@ -16,9 +16,15 @@ const ContactForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
+  const formData = new FormData(e.target as HTMLFormElement);
+
+  const response = await fetch("https://formspree.io/f/myzpyndr", {
+  method: "POST",
+  body: formData,
+  headers: { 'Accept': 'application/json' }
+});
+
+if (!response.ok) throw new Error("Failed");  
     
     setIsSubmitting(false);
     setIsSubmitted(true);
@@ -66,6 +72,7 @@ const ContactForm = () => {
                   </label>
                   <Input 
                     type="text" 
+                    name="firstName"
                     required 
                     className="bg-background-card border-border-subtle focus:border-primary transition-colors duration-300"
                     placeholder="John"
@@ -76,7 +83,8 @@ const ContactForm = () => {
                     Last Name *
                   </label>
                   <Input 
-                    type="text" 
+                    type="text"
+                    name="lastName" 
                     required 
                     className="bg-background-card border-border-subtle focus:border-primary transition-colors duration-300"
                     placeholder="Doe"
@@ -89,7 +97,8 @@ const ContactForm = () => {
                   Email *
                 </label>
                 <Input 
-                  type="email" 
+                  type="email"
+                  name="email" 
                   required 
                   className="bg-background-card border-border-subtle focus:border-primary transition-colors duration-300"
                 />
@@ -106,6 +115,8 @@ const ContactForm = () => {
                   onCountryCodeChange={setCountryCode}
                   placeholder="Enter your phone number"
                 />
+                <input type="hidden" name="phone" value={`${countryCode}${phone}`} />
+
               </div>
 
               <div>
@@ -113,7 +124,8 @@ const ContactForm = () => {
                   Company
                 </label>
                 <Input 
-                  type="text" 
+                  type="text"
+                  name="company" 
                   className="bg-background-card border-border-subtle focus:border-primary transition-colors duration-300"
                   placeholder="Your Company"
                 />
@@ -124,6 +136,7 @@ const ContactForm = () => {
                   Message *
                 </label>
                 <Textarea 
+                  name="message"
                   required
                   rows={5}
                   className="bg-background-card border-border-subtle focus:border-primary transition-colors duration-300"
