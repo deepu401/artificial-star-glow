@@ -147,9 +147,11 @@ const Services = () => {
           <p className="text-foreground-muted mb-8 max-w-2xl mx-auto">
             Let's discuss how our AI solutions can drive growth and efficiency for your company
           </p>
-          <Button variant="premium" size="xl">
-            Schedule a Consultation
-            <ArrowRight className="ml-2" />
+          <Button variant="premium" size="xl" asChild>
+            <Link to="/ai-journey">
+              Schedule a Consultation
+              <ArrowRight className="ml-2" />
+            </Link>
           </Button>
         </div>
       </div>

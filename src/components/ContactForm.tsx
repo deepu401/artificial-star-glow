@@ -89,7 +89,6 @@ const ContactForm = () => {
                   type="email" 
                   required 
                   className="bg-background-card border-border-subtle focus:border-primary transition-colors duration-300"
-                  placeholder="john@company.com"
                 />
               </div>
 
@@ -100,7 +99,6 @@ const ContactForm = () => {
                 <Input 
                   type="tel" 
                   className="bg-background-card border-border-subtle focus:border-primary transition-colors duration-300"
-                  placeholder="+1 (555) 123-4567"
                 />
               </div>
 
