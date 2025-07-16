@@ -4,10 +4,13 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Send, CheckCircle, Mail } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import PhoneInput from "./PhoneInput";
 
 const ContactForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [phone, setPhone] = useState("");
+  const [countryCode, setCountryCode] = useState("+1");
   const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -96,9 +99,12 @@ const ContactForm = () => {
                 <label className="block text-sm font-medium text-foreground-muted mb-2">
                   Mobile
                 </label>
-                <Input 
-                  type="tel" 
-                  className="bg-background-card border-border-subtle focus:border-primary transition-colors duration-300"
+                <PhoneInput
+                  value={phone}
+                  onChange={setPhone}
+                  countryCode={countryCode}
+                  onCountryCodeChange={setCountryCode}
+                  placeholder="Enter your phone number"
                 />
               </div>
 

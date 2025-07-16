@@ -8,12 +8,16 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Link } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import StarLogo from "./StarLogo";
+import PhoneInput from "./PhoneInput";
 
 interface FormData {
   firstName: string;
   lastName: string;
   entityType: string;
   companyName: string;
+  email: string;
+  phone: string;
+  countryCode: string;
   servicesInterested: string[];
   budget: string;
   initialMessage: string;
@@ -25,6 +29,9 @@ const AIJourneyForm = () => {
     lastName: "",
     entityType: "",
     companyName: "",
+    email: "",
+    phone: "",
+    countryCode: "+1",
     servicesInterested: [],
     budget: "",
     initialMessage: ""
@@ -67,9 +74,16 @@ const AIJourneyForm = () => {
   };
 
   const isFormValid = () => {
-    return formData.firstName && formData.lastName && formData.entityType && 
-           (formData.entityType === 'individual' || formData.companyName) &&
+    const baseValid = formData.firstName && formData.lastName && formData.entityType && 
            formData.servicesInterested.length > 0 && formData.budget && formData.initialMessage;
+    
+    if (formData.entityType === 'individual') {
+      return baseValid && formData.email; // Email is required for individuals
+    } else if (formData.entityType === 'company') {
+      return baseValid && formData.companyName;
+    }
+    
+    return baseValid;
   };
 
   return (
@@ -176,6 +190,33 @@ const AIJourneyForm = () => {
                     value={formData.companyName}
                     onChange={(e) => handleInputChange("companyName", e.target.value)}
                   />
+                </div>
+              )}
+
+              {formData.entityType === 'individual' && (
+                <div className="space-y-6">
+                  <div className="space-y-2">
+                    <Label htmlFor="email">Email Address *</Label>
+                    <Input
+                      id="email"
+                      type="email"
+                      placeholder="Enter your email address"
+                      value={formData.email}
+                      onChange={(e) => handleInputChange("email", e.target.value)}
+                      required
+                    />
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <Label htmlFor="phone">Phone Number (Optional)</Label>
+                    <PhoneInput
+                      value={formData.phone}
+                      onChange={(value) => handleInputChange("phone", value)}
+                      countryCode={formData.countryCode}
+                      onCountryCodeChange={(code) => handleInputChange("countryCode", code)}
+                      placeholder="Enter your phone number"
+                    />
+                  </div>
                 </div>
               )}
 
