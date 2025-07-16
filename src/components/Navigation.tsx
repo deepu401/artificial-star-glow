@@ -30,7 +30,7 @@ const Navigation = () => {
 
   const navItems = [
     { name: "Blog", href: "/blog" },
-    { name: "Contact", href: "#contact" }
+    { name: "Contact", href: "/contact" }
   ];
   return <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${isScrolled ? "bg-background/80 backdrop-blur-xl border-b border-border-subtle" : "bg-transparent"}`}>
       <div className="container mx-auto px-6 py-4">
