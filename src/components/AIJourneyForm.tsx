@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import StarLogo from "./StarLogo";
 import PhoneInput from "./PhoneInput";
+import { aiJourneyFormSchema, sanitizeInput, aiJourneyFormLimiter, type AIJourneyFormData } from "@/lib/security";
 
 interface FormData {
   firstName: string;
@@ -21,6 +22,7 @@ interface FormData {
   servicesInterested: string[];
   budget: string;
   initialMessage: string;
+  honeypot: string;
 }
 
 const AIJourneyForm = () => {
@@ -34,7 +36,8 @@ const AIJourneyForm = () => {
     countryCode: "+1",
     servicesInterested: [],
     budget: "",
-    initialMessage: ""
+    initialMessage: "",
+    honeypot: ""
   });
   
   const { toast } = useToast();
@@ -56,64 +59,104 @@ const AIJourneyForm = () => {
   };
 
   const handleSubmit = async () => {
-    if (!isFormValid()) {
-    toast({
-      title: "Please fill all required fields",
-      description: "Make sure to complete all required information before submitting.",
-    });
-    return;
-  }
+    try {
+      // Sanitize all form data
+      const sanitizedData = {
+        firstName: sanitizeInput(formData.firstName),
+        lastName: sanitizeInput(formData.lastName),
+        entityType: sanitizeInput(formData.entityType),
+        companyName: sanitizeInput(formData.companyName),
+        email: sanitizeInput(formData.email),
+        phone: sanitizeInput(formData.phone),
+        countryCode: sanitizeInput(formData.countryCode),
+        servicesInterested: formData.servicesInterested.map(service => sanitizeInput(service)),
+        budget: sanitizeInput(formData.budget),
+        initialMessage: sanitizeInput(formData.initialMessage),
+        honeypot: formData.honeypot,
+      };
 
-  try {
-    // Create form data to send
-    const submitData = new FormData();
-    submitData.append('firstName', formData.firstName);
-    submitData.append('lastName', formData.lastName);
-    submitData.append('entityType', formData.entityType);
-    submitData.append('companyName', formData.companyName);
-    submitData.append('email', formData.email);
-    submitData.append('phone', `${formData.countryCode}${formData.phone}`);
-    submitData.append('servicesInterested', formData.servicesInterested.join(', '));
-    submitData.append('budget', formData.budget);
-    submitData.append('initialMessage', formData.initialMessage);
-    submitData.append('_subject', 'New AI Journey Assessment - Artificial Star');
-
-    const response = await fetch("https://formspree.io/f/mzzvbjyp", {
-      method: "POST",
-      body: submitData,
-      headers: {
-        'Accept': 'application/json'
+      // Check honeypot (spam protection)
+      if (sanitizedData.honeypot) {
+        toast({
+          title: "Submission blocked",
+          description: "Please try again.",
+        });
+        return;
       }
-    });
 
-    if (response.ok) {
+      // Rate limiting check
+      const clientId = `${sanitizedData.email}-${Date.now()}`;
+      if (!aiJourneyFormLimiter.canAttempt(clientId)) {
+        toast({
+          title: "Too many submissions",
+          description: "Please wait before submitting again.",
+        });
+        return;
+      }
+
+      // Validate form data
+      const validationResult = aiJourneyFormSchema.safeParse(sanitizedData);
+      if (!validationResult.success) {
+        toast({
+          title: "Validation error",
+          description: validationResult.error.errors[0].message,
+        });
+        return;
+      }
+
+      // Record rate limit attempt
+      aiJourneyFormLimiter.recordAttempt(clientId);
+
+      // Create form data to send
+      const submitData = new FormData();
+      submitData.append('firstName', sanitizedData.firstName);
+      submitData.append('lastName', sanitizedData.lastName);
+      submitData.append('entityType', sanitizedData.entityType);
+      submitData.append('companyName', sanitizedData.companyName);
+      submitData.append('email', sanitizedData.email);
+      submitData.append('phone', `${sanitizedData.countryCode}${sanitizedData.phone}`);
+      submitData.append('servicesInterested', sanitizedData.servicesInterested.join(', '));
+      submitData.append('budget', sanitizedData.budget);
+      submitData.append('initialMessage', sanitizedData.initialMessage);
+      submitData.append('_subject', 'New AI Journey Assessment - Artificial Star');
+
+      const response = await fetch("https://formspree.io/f/mzzvbjyp", {
+        method: "POST",
+        body: submitData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        toast({
+          title: "Assessment Submitted!",
+          description: "Your AI roadmap is being generated. We'll contact you within 24 hours.",
+        });
+        
+        // Reset form after successful submission
+        setFormData({
+          firstName: "",
+          lastName: "",
+          entityType: "",
+          companyName: "",
+          email: "",
+          phone: "",
+          countryCode: "+1",
+          servicesInterested: [],
+          budget: "",
+          initialMessage: "",
+          honeypot: ""
+        });
+      } else {
+        throw new Error("Submission failed");
+      }
+    } catch (error) {
       toast({
-        title: "Assessment Submitted!",
-        description: "Your AI roadmap is being generated. We'll contact you within 24 hours.",
+        title: "Error submitting assessment",
+        description: "Please try again or contact us directly.",
       });
-      
-      // Reset form after successful submission
-      setFormData({
-        firstName: "",
-        lastName: "",
-        entityType: "",
-        companyName: "",
-        email: "",
-        phone: "",
-        countryCode: "+1",
-        servicesInterested: [],
-        budget: "",
-        initialMessage: ""
-      });
-    } else {
-      throw new Error("Submission failed");
     }
-  } catch (error) {
-    toast({
-      title: "Error submitting assessment",
-      description: "Please try again or contact us directly.",
-    });
-  }
   };
 
   const isFormValid = () => {
@@ -308,6 +351,17 @@ const AIJourneyForm = () => {
                   rows={4}
                 />
               </div>
+
+              {/* Honeypot field - hidden from users */}
+              <input
+                type="text"
+                name="honeypot"
+                value={formData.honeypot}
+                onChange={(e) => handleInputChange("honeypot", e.target.value)}
+                style={{ display: 'none' }}
+                tabIndex={-1}
+                autoComplete="off"
+              />
 
               {/* Navigation */}
               <div className="flex justify-center pt-6">

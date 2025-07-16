@@ -5,6 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Send, CheckCircle, Mail } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import PhoneInput from "./PhoneInput";
+import { contactFormSchema, sanitizeInput, contactFormLimiter, type ContactFormData } from "@/lib/security";
 
 const ContactForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -16,28 +17,85 @@ const ContactForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-  const formData = new FormData(e.target as HTMLFormElement);
 
-  const response = await fetch("https://formspree.io/f/myzpyndr", {
-  method: "POST",
-  body: formData,
-  headers: { 'Accept': 'application/json' }
-});
+    try {
+      const formData = new FormData(e.target as HTMLFormElement);
+      
+      // Get form values
+      const formValues = {
+        firstName: sanitizeInput(formData.get('firstName') as string),
+        lastName: sanitizeInput(formData.get('lastName') as string),
+        email: sanitizeInput(formData.get('email') as string),
+        phone: sanitizeInput(formData.get('phone') as string),
+        countryCode: sanitizeInput(formData.get('countryCode') as string),
+        company: sanitizeInput(formData.get('company') as string),
+        message: sanitizeInput(formData.get('message') as string),
+        honeypot: formData.get('honeypot') as string,
+      };
 
-if (!response.ok) throw new Error("Failed");  
-    
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    
-    toast({
-      title: "Message sent successfully!",
-      description: "We'll get back to you within 24 hours.",
-    });
+      // Check honeypot (spam protection)
+      if (formValues.honeypot) {
+        toast({
+          title: "Submission blocked",
+          description: "Please try again.",
+        });
+        setIsSubmitting(false);
+        return;
+      }
 
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
-    }, 3000);
+      // Rate limiting check
+      const clientId = `${formValues.email}-${Date.now()}`;
+      if (!contactFormLimiter.canAttempt(clientId)) {
+        toast({
+          title: "Too many submissions",
+          description: "Please wait before submitting again.",
+        });
+        setIsSubmitting(false);
+        return;
+      }
+
+      // Validate form data
+      const validationResult = contactFormSchema.safeParse(formValues);
+      if (!validationResult.success) {
+        toast({
+          title: "Validation error",
+          description: validationResult.error.errors[0].message,
+        });
+        setIsSubmitting(false);
+        return;
+      }
+
+      // Record rate limit attempt
+      contactFormLimiter.recordAttempt(clientId);
+
+      // Submit to Formspree
+      const response = await fetch("https://formspree.io/f/myzpyndr", {
+        method: "POST",
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (!response.ok) throw new Error("Failed");
+
+      setIsSubmitting(false);
+      setIsSubmitted(true);
+      
+      toast({
+        title: "Message sent successfully!",
+        description: "We'll get back to you within 24 hours.",
+      });
+
+      // Reset form after 3 seconds
+      setTimeout(() => {
+        setIsSubmitted(false);
+      }, 3000);
+    } catch (error) {
+      setIsSubmitting(false);
+      toast({
+        title: "Error sending message",
+        description: "Please try again or contact us directly.",
+      });
+    }
   };
 
   return (
@@ -116,8 +174,17 @@ if (!response.ok) throw new Error("Failed");
                   placeholder="Enter your phone number"
                 />
                 <input type="hidden" name="phone" value={`${countryCode}${phone}`} />
-
+                <input type="hidden" name="countryCode" value={countryCode} />
               </div>
+
+              {/* Honeypot field - hidden from users */}
+              <input
+                type="text"
+                name="honeypot"
+                style={{ display: 'none' }}
+                tabIndex={-1}
+                autoComplete="off"
+              />
 
               <div>
                 <label className="block text-sm font-medium text-foreground-muted mb-2">
