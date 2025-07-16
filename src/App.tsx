@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import BlogPage from "./pages/BlogPage";
 import ArticlePage from "./pages/ArticlePage";
 import ServicePage from "./pages/ServicePage";
+import ServicesPage from "./pages/ServicesPage";
 import WhatWeDo from "./pages/WhatWeDo";
 
 import AIJourneyForm from "./components/AIJourneyForm";
@@ -25,6 +26,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/what-we-do" element={<WhatWeDo />} />
+            <Route path="/services" element={<ServicesPage />} />
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/article/:slug" element={<ArticlePage />} />
             <Route path="/service/:slug" element={<ServicePage />} />

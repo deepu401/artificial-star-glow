@@ -22,7 +22,6 @@ const Footer = () => {
         { name: "What We Do", href: "/what-we-do" },
         { name: "Approach", href: "/#approach" },
         { name: "Blog", href: "/blog" },
-        { name: "Contact", href: "#contact" },
       ]
     },
     {
@@ -30,8 +29,8 @@ const Footer = () => {
       links: [
         { name: "Case Studies", href: "/blog" },
         { name: "AI Tools", href: "/blog" },
-        { name: "Consultation", href: "#contact" },
-        { name: "Support", href: "#contact" },
+        { name: "Consultation", href: "/ai-journey" },
+        { name: "Support", href: "/ai-journey" },
       ]
     },
     {
@@ -136,9 +135,6 @@ const Footer = () => {
               </a>
               <a href="#" className="text-foreground-muted hover:text-foreground transition-colors duration-300">
                 Terms of Service
-              </a>
-              <a href="#contact" className="text-foreground-muted hover:text-foreground transition-colors duration-300">
-                Contact
               </a>
             </div>
           </div>

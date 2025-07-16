@@ -582,7 +582,7 @@ const WhatWeDo = () => {
                 <h3 className="text-2xl font-bold text-foreground mb-4">Leadership Discussion</h3>
                 <p className="text-foreground-muted mb-6">Speak with our AI strategy team</p>
                 <Button variant="premium" size="lg" asChild>
-                  <Link to="#contact">Schedule Strategic Call</Link>
+                  <Link to="/ai-journey">Schedule Strategic Call</Link>
                 </Button>
               </motion.div>
 
