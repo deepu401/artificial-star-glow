@@ -1,8 +1,14 @@
 {
   "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
+    { "source": "/services", "destination": "/index.html" },
+    { "source": "/service/custom-chatbots", "destination": "/index.html" },
+    { "source": "/service/voice-agents", "destination": "/index.html" },
+    { "source": "/service/intelligent-automation", "destination": "/index.html" },
+    { "source": "/service/website-design", "destination": "/index.html" },
+    { "source": "/service/custom-solutions", "destination": "/index.html" },
+    { "source": "/what-we-do", "destination": "/index.html" },
+    { "source": "/blog", "destination": "/index.html" },
+    { "source": "/ai-journey", "destination": "/index.html" },
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
