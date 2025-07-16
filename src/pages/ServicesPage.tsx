@@ -104,9 +104,9 @@ const ServicesPage = () => {
             variants={itemVariants}
             className="text-5xl md:text-7xl font-bold text-foreground mb-6 leading-tight"
           >
-            Transform Your Business With{" "}
+            Transform Your Business With AI{" "}
             <span className="bg-gradient-primary bg-clip-text text-transparent">
-              AI Solutions
+              Solutions
             </span>
           </motion.h1>
 
