@@ -55,22 +55,65 @@ const AIJourneyForm = () => {
     }));
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!isFormValid()) {
-      toast({
-        title: "Please fill all required fields",
-        description: "Make sure to complete all required information before submitting.",
-      });
-      return;
-    }
-
     toast({
-      title: "Assessment Submitted!",
-      description: "Your AI roadmap is being generated. We'll contact you within 24 hours.",
+      title: "Please fill all required fields",
+      description: "Make sure to complete all required information before submitting.",
     });
-    
-    // Here you would typically send the data to your backend
-    console.log("Form submitted:", formData);
+    return;
+  }
+
+  try {
+    // Create form data to send
+    const submitData = new FormData();
+    submitData.append('firstName', formData.firstName);
+    submitData.append('lastName', formData.lastName);
+    submitData.append('entityType', formData.entityType);
+    submitData.append('companyName', formData.companyName);
+    submitData.append('email', formData.email);
+    submitData.append('phone', `${formData.countryCode}${formData.phone}`);
+    submitData.append('servicesInterested', formData.servicesInterested.join(', '));
+    submitData.append('budget', formData.budget);
+    submitData.append('initialMessage', formData.initialMessage);
+    submitData.append('_subject', 'New AI Journey Assessment - Artificial Star');
+
+    const response = await fetch("https://formspree.io/f/mzzvbjyp", {
+      method: "POST",
+      body: submitData,
+      headers: {
+        'Accept': 'application/json'
+      }
+    });
+
+    if (response.ok) {
+      toast({
+        title: "Assessment Submitted!",
+        description: "Your AI roadmap is being generated. We'll contact you within 24 hours.",
+      });
+      
+      // Reset form after successful submission
+      setFormData({
+        firstName: "",
+        lastName: "",
+        entityType: "",
+        companyName: "",
+        email: "",
+        phone: "",
+        countryCode: "+1",
+        servicesInterested: [],
+        budget: "",
+        initialMessage: ""
+      });
+    } else {
+      throw new Error("Submission failed");
+    }
+  } catch (error) {
+    toast({
+      title: "Error submitting assessment",
+      description: "Please try again or contact us directly.",
+    });
+  }
   };
 
   const isFormValid = () => {
