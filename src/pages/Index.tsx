@@ -7,12 +7,18 @@ import Blog from "@/components/Blog";
 import Contact from "@/components/Contact";
 import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
+import { Helmet } from "react-helmet-async";
 
 
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
+      <Helmet>
+        <title>Artificial Star AI - Premium AI Solutions | Custom Chatbots</title>
+        <meta name="description" content="Transform your business with custom AI solutions. Artificial Star builds intelligent chatbots, voice agents, and automation systems that drive real results." />
+        <link rel="canonical" href="https://www.artificialstar.ai/" />
+      </Helmet>
 
       <Navigation />
       <FixedStarLogo />

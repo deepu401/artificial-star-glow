@@ -1,6 +1,7 @@
 import { Calendar, ArrowRight, Clock, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 
 const BlogPage = () => {
@@ -54,6 +55,11 @@ const BlogPage = () => {
     slug: "machine-learning-vs-deep-learning"
   }];
   return <div className="min-h-screen bg-background text-foreground">
+    <Helmet>
+      <title>AI Blog - Latest Insights & Automation Tips | Artificial Star</title>
+      <meta name="description" content="Stay updated with the latest AI trends, automation tips, and business insights from Artificial Star's AI experts." />
+      <link rel="canonical" href="https://www.artificialstar.ai/blog" />
+    </Helmet>
 
       {/* Header */}
       <div className="bg-gradient-hero relative overflow-hidden">

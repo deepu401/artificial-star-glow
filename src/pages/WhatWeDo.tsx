@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Star, Zap, TrendingUp, Target, Rocket, Handshake, BarChart3, Search, Building, Users, Heart, Stethoscope, Home, ShoppingCart, Briefcase, Factory, CreditCard, GraduationCap, MapPin, DollarSign, Clock, Award, Smile, Globe, Bot, Lightbulb } from "lucide-react";
+import { Helmet } from "react-helmet-async";
 
 
 const WhatWeDo = () => {
