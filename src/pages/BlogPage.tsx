@@ -1,6 +1,8 @@
 import { Calendar, ArrowRight, Clock, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import Head from "next/head";
+
 const BlogPage = () => {
   const blogPosts = [{
     title: "How AI Chatbots Are Revolutionizing Customer Service",
@@ -52,6 +54,12 @@ const BlogPage = () => {
     slug: "machine-learning-vs-deep-learning"
   }];
   return <div className="min-h-screen bg-background text-foreground">
+    <Head>
+      <title>AI Blog - Latest Insights & Automation Tips | Artificial Star</title>
+      <meta name="description" content="Stay updated with the latest AI trends, automation tips, and business insights from Artificial Star's AI experts." />
+      <link rel="canonical" href="https://www.artificialstar.ai/blog" />
+   </Head>
+
       {/* Header */}
       <div className="bg-gradient-hero relative overflow-hidden">
         <div className="absolute inset-0 opacity-20">
