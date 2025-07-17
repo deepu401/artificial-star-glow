@@ -7,10 +7,18 @@ import Blog from "@/components/Blog";
 import Contact from "@/components/Contact";
 import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
+import Head from "next/head";
+
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
+      <Head>
+      <title>Artificial Star AI - Premium AI Solutions | Custom Chatbots</title>
+      <meta name="description" content="Transform your business with custom AI solutions. Artificial Star builds intelligent chatbots, voice agents, and automation systems that drive real results." />
+      <link rel="canonical" href="https://www.artificialstar.ai/" />
+      </Head>
+
       <Navigation />
       <FixedStarLogo />
       <Hero />
