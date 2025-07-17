@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Star, Zap, TrendingUp, Target, Rocket, Handshake, BarChart3, Search, Building, Users, Heart, Stethoscope, Home, ShoppingCart, Briefcase, Factory, CreditCard, GraduationCap, MapPin, DollarSign, Clock, Award, Smile, Globe, Bot, Lightbulb } from "lucide-react";
-import Head from "next/head";
+
 
 const WhatWeDo = () => {
   const containerVariants = {
@@ -83,11 +83,6 @@ const WhatWeDo = () => {
     items: ["Staff focusing on high-value work", "Improved customer experiences", "Reduced stress from manual processes"]
   }];
   return <div className="min-h-screen bg-background">
-    <Head>
-      <title>What We Do - AI Solutions & Business Automation | Artificial Star</title>
-      <meta name="description" content="Discover how Artificial Star transforms businesses with AI automation, custom chatbots, voice agents, and intelligent solutions." />
-      <link rel="canonical" href="https://www.artificialstar.ai/what-we-do" />
-    </Head>
 
       <Navigation />
       

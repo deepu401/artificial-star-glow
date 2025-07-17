@@ -5,7 +5,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { useState } from "react";
 import AIJourneyModal from "@/components/AIJourneyModal";
-import Head from "next/head";
+
 
 
 const ServicePage = () => {
@@ -154,11 +154,6 @@ const ServicePage = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
-      <Head>
-      <title>AI Services - Chatbots, Voice Agents & Automation | Artificial Star</title>
-      <meta name="description" content="Professional AI services including chatbots, voice agents, business automation, and custom AI solutions. Serving international clients from India." />
-      <link rel="canonical" href="https://www.artificialstar.ai/services" />
-      </Head>
 
       <Navigation />
       
