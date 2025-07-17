@@ -2,7 +2,7 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import StarLogo from "./StarLogo";
-import { Instagram, Twitter, Linkedin, Facebook, MessageCircle } from "lucide-react";
+import { Instagram, Twitter, Linkedin, Facebook, MessageCircle, Mail } from "lucide-react";
 
 const Footer = () => {
   const footerSections = [
@@ -60,6 +60,17 @@ const Footer = () => {
             <p className="text-foreground-muted text-sm leading-relaxed mb-6">
               Illuminating the future with intelligent AI solutions that transform businesses and drive growth.
             </p>
+            
+            {/* Contact Email */}
+            <div className="flex items-center space-x-2 mb-6">
+              <Mail className="w-4 h-4 text-primary" />
+              <a 
+                href="mailto:hello@artificialstar.ai" 
+                className="text-sm text-foreground-muted hover:text-primary transition-colors duration-300"
+              >
+                hello@artificialstar.ai
+              </a>
+            </div>
             
             {/* Social Media Icons */}
             <div className="flex items-center space-x-4 mb-6">

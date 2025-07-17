@@ -246,10 +246,10 @@ const ContactForm = () => {
                 <span className="text-foreground-muted">Direct Email</span>
               </div>
               <a 
-                href="mailto:artificialstar1@gmail.com" 
+                href="mailto:hello@artificialstar.ai" 
                 className="text-lg font-medium text-primary hover:text-accent transition-colors duration-300"
               >
-                artificialstar1@gmail.com
+                hello@artificialstar.ai
               </a>
             </div>
           </div>
