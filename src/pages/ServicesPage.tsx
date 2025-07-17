@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { MessageCircle, Mic, Bot, Palette, Cog, ArrowRight, Zap } from "lucide-react";
+import Head from "next/head";
+
 const ServicesPage = () => {
   const containerVariants = {
     hidden: {
@@ -67,6 +69,12 @@ const ServicesPage = () => {
     gradient: "from-indigo-600 to-blue-600"
   }];
   return <div className="min-h-screen bg-background">
+      <Head>
+      <title>Premium AI Services - Enterprise Solutions | Artificial Star</title>
+      <meta name="description" content="Enterprise-grade AI services including custom development, integration, and consulting. Serving Fortune 500 companies worldwide." />
+      <link rel="canonical" href="https://www.artificialstar.ai/premium-services" />
+      </Head>
+
       <Navigation />
       
       {/* Hero Section */}
