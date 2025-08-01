@@ -1,0 +1,12 @@
+# humanstxt.org
+
+/* TEAM */
+Developer: Artificial Star Team
+Contact: hello@artificialstar.ai
+Location: Global
+
+/* SITE */
+Last update: 2024/08/01
+Language: English
+Doctype: HTML5
+IDE: VS Code
