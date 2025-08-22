@@ -112,22 +112,7 @@ const Hero = () => {
           duration: 0.8,
           delay: 0.9
         }}>
-            <div className="flex flex-col md:flex-row justify-center items-center space-y-8 md:space-y-0 md:space-x-12 bg-gradient-card backdrop-blur-sm rounded-xl p-8 border border-border-subtle">
-              <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-primary mb-2">100+</div>
-                <div className="text-sm text-foreground-muted uppercase tracking-wide">AI Solutions Delivered</div>
-              </div>
-              <div className="hidden md:block w-px h-12 bg-border-subtle"></div>
-              <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-accent mb-2">50+</div>
-                <div className="text-sm text-foreground-muted uppercase tracking-wide">Happy Clients</div>
-              </div>
-              <div className="hidden md:block w-px h-12 bg-border-subtle"></div>
-              <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-primary-light mb-2">24/7</div>
-                <div className="text-sm text-foreground-muted uppercase tracking-wide">AI Support</div>
-              </div>
-            </div>
+            
           </motion.div>
         </div>
       </div>
