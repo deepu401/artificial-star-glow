@@ -13,8 +13,41 @@ const Hero = () => {
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-primary/40 rounded-full blur-2xl animate-glow-pulse"></div>
       </div>
 
-      <div className="container mx-auto px-6 relative z-10 py-8">
-        <div className="max-w-4xl text-center pt-16 mx-0 px-0 py-[12px]">
+      {/* AI Floating Elements */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {/* Floating AI Keywords */}
+        <motion.div
+          className="absolute top-1/4 right-8 text-primary/30 font-mono text-sm"
+          animate={{ y: [0, -10, 0], opacity: [0.3, 0.6, 0.3] }}
+          transition={{ duration: 3, repeat: Infinity, delay: 0 }}
+        >
+          &lt;AI&gt;
+        </motion.div>
+        <motion.div
+          className="absolute top-1/3 left-8 text-accent/30 font-mono text-xs"
+          animate={{ y: [0, 10, 0], opacity: [0.2, 0.5, 0.2] }}
+          transition={{ duration: 4, repeat: Infinity, delay: 1 }}
+        >
+          neural_network()
+        </motion.div>
+        <motion.div
+          className="absolute bottom-1/3 right-16 text-primary/20 font-mono text-xs"
+          animate={{ x: [0, 5, 0], opacity: [0.2, 0.4, 0.2] }}
+          transition={{ duration: 5, repeat: Infinity, delay: 2 }}
+        >
+          machine_learning
+        </motion.div>
+        <motion.div
+          className="absolute top-2/3 left-12 text-accent/25 font-mono text-sm"
+          animate={{ rotate: [0, 5, -5, 0], opacity: [0.25, 0.5, 0.25] }}
+          transition={{ duration: 6, repeat: Infinity, delay: 1.5 }}
+        >
+          {"{AI}"}
+        </motion.div>
+      </div>
+
+      <div className="container mx-auto px-6 relative z-10 py-4">
+        <div className="max-w-4xl text-center pt-12 mx-0 px-0">
           {/* Main headline */}
           <motion.h1 initial={{
           opacity: 0,
@@ -25,7 +58,7 @@ const Hero = () => {
         }} transition={{
           duration: 0.8,
           ease: "easeOut"
-        }} className="font-tomorrow mb-12 tracking-wide md:text-5xl font-light text-4xl md:text-left leading-tight text-left mx-0">
+        }} className="font-tomorrow mb-8 tracking-wide md:text-5xl font-light text-4xl md:text-left leading-tight text-left mx-0">
             <motion.span animate={{
             backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
           }} transition={{
@@ -34,7 +67,7 @@ const Hero = () => {
             ease: "linear"
           }} style={{
             backgroundSize: "200% 200%"
-          }} className="bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent block mb-4 mx-0 px-0 my-[18px]">
+          }} className="bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent block mb-3 mx-0 px-0">
               ILLUMINATING THE FUTURE
             </motion.span>
             <motion.span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent" animate={{
@@ -52,7 +85,7 @@ const Hero = () => {
           </motion.h1>
           
           {/* Subheadline */}
-          <motion.p className="text-lg md:text-xl text-foreground-muted mb-16 max-w-3xl mx-auto leading-loose font-light" initial={{
+          <motion.p className="text-lg md:text-xl text-foreground-muted mb-12 max-w-3xl mx-auto leading-loose font-light" initial={{
           opacity: 0,
           y: 20
         }} animate={{
