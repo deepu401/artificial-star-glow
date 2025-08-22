@@ -14,35 +14,49 @@ const Hero = () => {
       </div>
 
       {/* AI Floating Elements */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none overflow-hidden z-5">
         {/* Floating AI Keywords */}
         <motion.div
-          className="absolute top-1/4 right-8 text-primary/30 font-mono text-sm"
-          animate={{ y: [0, -10, 0], opacity: [0.3, 0.6, 0.3] }}
+          className="absolute top-1/4 right-12 text-primary/60 font-mono text-lg font-bold"
+          animate={{ y: [0, -15, 0], opacity: [0.4, 0.8, 0.4] }}
           transition={{ duration: 3, repeat: Infinity, delay: 0 }}
         >
-          &lt;AI&gt;
+          &lt;AI/&gt;
         </motion.div>
         <motion.div
-          className="absolute top-1/3 left-8 text-accent/30 font-mono text-xs"
-          animate={{ y: [0, 10, 0], opacity: [0.2, 0.5, 0.2] }}
+          className="absolute top-1/3 left-16 text-accent/50 font-mono text-sm"
+          animate={{ y: [0, 12, 0], opacity: [0.3, 0.7, 0.3] }}
           transition={{ duration: 4, repeat: Infinity, delay: 1 }}
         >
           neural_network()
         </motion.div>
         <motion.div
-          className="absolute bottom-1/3 right-16 text-primary/20 font-mono text-xs"
-          animate={{ x: [0, 5, 0], opacity: [0.2, 0.4, 0.2] }}
+          className="absolute bottom-1/3 right-20 text-primary/40 font-mono text-sm"
+          animate={{ x: [0, 8, 0], opacity: [0.3, 0.6, 0.3] }}
           transition={{ duration: 5, repeat: Infinity, delay: 2 }}
         >
           machine_learning
         </motion.div>
         <motion.div
-          className="absolute top-2/3 left-12 text-accent/25 font-mono text-sm"
-          animate={{ rotate: [0, 5, -5, 0], opacity: [0.25, 0.5, 0.25] }}
+          className="absolute top-2/3 left-20 text-accent/45 font-mono text-base"
+          animate={{ rotate: [0, 8, -8, 0], opacity: [0.35, 0.7, 0.35] }}
           transition={{ duration: 6, repeat: Infinity, delay: 1.5 }}
         >
-          {"{AI}"}
+          {"{intelligence}"}
+        </motion.div>
+        <motion.div
+          className="absolute top-1/2 right-8 text-primary/35 font-mono text-xs"
+          animate={{ scale: [1, 1.1, 1], opacity: [0.25, 0.6, 0.25] }}
+          transition={{ duration: 4, repeat: Infinity, delay: 3 }}
+        >
+          deep_learning.py
+        </motion.div>
+        <motion.div
+          className="absolute bottom-1/4 left-12 text-accent/40 font-mono text-sm"
+          animate={{ y: [0, -8, 0], x: [0, 4, 0], opacity: [0.3, 0.65, 0.3] }}
+          transition={{ duration: 5, repeat: Infinity, delay: 2.5 }}
+        >
+          algorithm()
         </motion.div>
       </div>
 
