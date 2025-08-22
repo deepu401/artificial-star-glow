@@ -13,8 +13,8 @@ const Hero = () => {
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-primary/40 rounded-full blur-2xl animate-glow-pulse"></div>
       </div>
 
-      <div className="container mx-auto px-6 relative z-10 py-8">
-        <div className="max-w-4xl text-center pt-16 mx-0 px-0 py-[12px]">
+      <div className="container px-6 relative z-10 py-8 mx-[200px]">
+        <div className="max-w-4xl text-center pt-16 px-0 py-[12px] mx-0">
           {/* Main headline */}
           <motion.h1 initial={{
           opacity: 0,
