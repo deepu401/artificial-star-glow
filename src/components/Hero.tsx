@@ -14,7 +14,7 @@ const Hero = () => {
       </div>
 
       <div className="container px-6 relative z-10 py-8 mx-[200px]">
-        <div className="max-w-4xl text-center pt-16 px-0 py-[12px] mx-0">
+        <div className="max-w-4xl text-center pt-16 py-[12px] mx-0 px-[200px]">
           {/* Main headline */}
           <motion.h1 initial={{
           opacity: 0,
